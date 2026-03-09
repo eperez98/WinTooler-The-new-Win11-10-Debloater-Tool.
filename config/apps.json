@@ -1,0 +1,1001 @@
+[
+  {
+    "Category": "Browsers",
+    "Name": "Brave Browser",
+    "Id": "Brave.Brave",
+    "Description": "Privacy-focused browser with built-in ad blocking",
+    "Icon": "B",
+    "Color": "#E2552C",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Google Chrome",
+    "Id": "Google.Chrome",
+    "Description": "Fast and widely-used browser by Google",
+    "Icon": "B",
+    "Color": "#4285F4",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Chromium",
+    "Id": "Hibbiki.Chromium",
+    "Description": "Open-source base for Chrome without Google telemetry",
+    "Icon": "B",
+    "Color": "#6E8FBF",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "LibreWolf",
+    "Id": "LibreWolf.LibreWolf",
+    "Description": "Privacy-hardened Firefox fork, zero telemetry",
+    "Icon": "B",
+    "Color": "#00ACFF",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Mozilla Firefox",
+    "Id": "Mozilla.Firefox",
+    "Description": "Fast, private and open-source browser",
+    "Icon": "B",
+    "Color": "#FF7139",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Opera",
+    "Id": "Opera.Opera",
+    "Description": "Feature-rich browser with VPN and ad blocker",
+    "Icon": "B",
+    "Color": "#FF1B2D",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Opera GX",
+    "Id": "Opera.OperaGX",
+    "Description": "Gaming browser with CPU/RAM/Network limiters",
+    "Icon": "B",
+    "Color": "#D4291F",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Thorium Browser",
+    "Id": "Alex313031.Thorium",
+    "Description": "Chromium fork optimised for maximum performance",
+    "Icon": "B",
+    "Color": "#4FC3F7",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Tor Browser",
+    "Id": "TorProject.TorBrowser",
+    "Description": "Anonymous browsing via the Tor network",
+    "Icon": "B",
+    "Color": "#7D4698",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Ungoogled Chromium",
+    "Id": "eloston.ungoogled-chromium",
+    "Description": "Chromium without any Google integration",
+    "Icon": "B",
+    "Color": "#5E8DBA",
+    "Selected": false
+  },
+  {
+    "Category": "Browsers",
+    "Name": "Waterfox",
+    "Id": "Waterfox.Waterfox",
+    "Description": "Fast Firefox-based browser with legacy extension support",
+    "Icon": "B",
+    "Color": "#00ACFF",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "AnyDesk",
+    "Id": "AnyDesk.AnyDesk",
+    "Description": "Fast remote desktop and remote access tool",
+    "Icon": "C",
+    "Color": "#EF4335",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Discord",
+    "Id": "Discord.Discord",
+    "Description": "Voice, video and text chat for communities",
+    "Icon": "C",
+    "Color": "#5865F2",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Element",
+    "Id": "Element.Element",
+    "Description": "Secure decentralised messaging on Matrix network",
+    "Icon": "C",
+    "Color": "#0DBD8B",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Ferdium",
+    "Id": "Ferdium.Ferdium",
+    "Description": "All-in-one app combining Slack, WhatsApp and more",
+    "Icon": "C",
+    "Color": "#7B68EE",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Keybase",
+    "Id": "Keybase.Keybase",
+    "Description": "End-to-end encrypted messaging and file sharing",
+    "Icon": "C",
+    "Color": "#4C8EFF",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Microsoft Teams",
+    "Id": "Microsoft.Teams",
+    "Description": "Collaboration platform for meetings and chat",
+    "Icon": "C",
+    "Color": "#6264A7",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Mumble",
+    "Id": "Mumble.Mumble",
+    "Description": "Low-latency open-source voice chat for gaming",
+    "Icon": "C",
+    "Color": "#5E9ECB",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Signal",
+    "Id": "OpenWhisperSystems.Signal",
+    "Description": "Encrypted messaging app focused on privacy",
+    "Icon": "C",
+    "Color": "#3A76F0",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Slack",
+    "Id": "SlackTechnologies.Slack",
+    "Description": "Business messaging and collaboration platform",
+    "Icon": "C",
+    "Color": "#4A154B",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Telegram",
+    "Id": "Telegram.TelegramDesktop",
+    "Description": "Fast and secure cloud-based messaging app",
+    "Icon": "C",
+    "Color": "#0088CC",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "TeamViewer",
+    "Id": "TeamViewer.TeamViewer",
+    "Description": "Remote desktop and online meeting software",
+    "Icon": "C",
+    "Color": "#0E8EE9",
+    "Selected": false
+  },
+  {
+    "Category": "Communications",
+    "Name": "Zoom",
+    "Id": "Zoom.Zoom",
+    "Description": "Video conferencing and online meetings platform",
+    "Icon": "C",
+    "Color": "#2D8CFF",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Android Studio",
+    "Id": "Google.AndroidStudio",
+    "Description": "Official IDE for Android app development",
+    "Icon": "D",
+    "Color": "#3DDC84",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Docker Desktop",
+    "Id": "Docker.DockerDesktop",
+    "Description": "Build and share containerised apps and microservices",
+    "Icon": "D",
+    "Color": "#2496ED",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Git",
+    "Id": "Git.Git",
+    "Description": "Distributed version control system",
+    "Icon": "D",
+    "Color": "#F05033",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "GitHub Desktop",
+    "Id": "GitHub.GitHubDesktop",
+    "Description": "GUI client for managing GitHub repositories",
+    "Icon": "D",
+    "Color": "#24292E",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "GitKraken",
+    "Id": "Axosoft.GitKraken",
+    "Description": "Cross-platform graphical Git client",
+    "Icon": "D",
+    "Color": "#169287",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Insomnia",
+    "Id": "Insomnia.Insomnia",
+    "Description": "API design, debug and testing platform",
+    "Icon": "D",
+    "Color": "#4000BF",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "JetBrains Toolbox",
+    "Id": "JetBrains.Toolbox",
+    "Description": "Manage all JetBrains IDEs from one place",
+    "Icon": "D",
+    "Color": "#FF318C",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Node.js LTS",
+    "Id": "OpenJS.NodeJS.LTS",
+    "Description": "JavaScript runtime built on Chrome V8 engine",
+    "Icon": "D",
+    "Color": "#68A063",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Notepad++",
+    "Id": "Notepad++.Notepad++",
+    "Description": "Advanced source code and text editor",
+    "Icon": "D",
+    "Color": "#90E59A",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Postman",
+    "Id": "Postman.Postman",
+    "Description": "API platform for building and testing APIs",
+    "Icon": "D",
+    "Color": "#FF6C37",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Python 3",
+    "Id": "Python.Python.3",
+    "Description": "Python programming language runtime",
+    "Icon": "D",
+    "Color": "#FFD43B",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Ruby",
+    "Id": "RubyInstallerTeam.Ruby",
+    "Description": "Dynamic open-source programming language",
+    "Icon": "D",
+    "Color": "#CC342D",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Sublime Text 4",
+    "Id": "SublimeHQ.SublimeText.4",
+    "Description": "Sophisticated text editor for code and markup",
+    "Icon": "D",
+    "Color": "#FF9800",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Visual Studio Code",
+    "Id": "Microsoft.VisualStudioCode",
+    "Description": "Lightweight but powerful code editor by Microsoft",
+    "Icon": "D",
+    "Color": "#007ACC",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "VSCodium",
+    "Id": "VSCodium.VSCodium",
+    "Description": "VS Code binaries without Microsoft telemetry",
+    "Icon": "D",
+    "Color": "#2B7CBB",
+    "Selected": false
+  },
+  {
+    "Category": "Development",
+    "Name": "Windows Terminal",
+    "Id": "Microsoft.WindowsTerminal",
+    "Description": "Modern tabbed terminal for PowerShell, CMD and WSL",
+    "Icon": "D",
+    "Color": "#0078D4",
+    "Selected": false
+  },
+  {
+    "Category": "Document",
+    "Name": "CutePDF Writer",
+    "Id": "AcroSoftware.CutePDFWriter",
+    "Description": "Creates PDFs from any printable application",
+    "Icon": "X",
+    "Color": "#FF5722",
+    "Selected": false
+  },
+  {
+    "Category": "Document",
+    "Name": "Foxit PDF Reader",
+    "Id": "Foxit.FoxitReader",
+    "Description": "Fast and lightweight PDF reader",
+    "Icon": "X",
+    "Color": "#EE3124",
+    "Selected": false
+  },
+  {
+    "Category": "Document",
+    "Name": "LibreOffice",
+    "Id": "TheDocumentFoundation.LibreOffice",
+    "Description": "Free office suite: Writer, Calc, Impress and more",
+    "Icon": "X",
+    "Color": "#18A303",
+    "Selected": false
+  },
+  {
+    "Category": "Document",
+    "Name": "Okular",
+    "Id": "KDE.Okular",
+    "Description": "Universal document viewer supporting PDF, epub and more",
+    "Icon": "X",
+    "Color": "#1D99F3",
+    "Selected": false
+  },
+  {
+    "Category": "Document",
+    "Name": "OnlyOffice",
+    "Id": "ONLYOFFICE.DesktopEditors",
+    "Description": "Office suite fully compatible with Microsoft Office formats",
+    "Icon": "X",
+    "Color": "#FF6F00",
+    "Selected": false
+  },
+  {
+    "Category": "Document",
+    "Name": "SumatraPDF",
+    "Id": "SumatraPDF.SumatraPDF",
+    "Description": "Fast minimal PDF, epub, mobi and DjVu viewer",
+    "Icon": "X",
+    "Color": "#1C98D8",
+    "Selected": false
+  },
+  {
+    "Category": "Gaming",
+    "Name": "EA App",
+    "Id": "ElectronicArts.EADesktop",
+    "Description": "EA game launcher replacing the Origin client",
+    "Icon": "G",
+    "Color": "#FF4747",
+    "Selected": false
+  },
+  {
+    "Category": "Gaming",
+    "Name": "Epic Games Launcher",
+    "Id": "EpicGames.EpicGamesLauncher",
+    "Description": "Game store and launcher for Epic Games titles",
+    "Icon": "G",
+    "Color": "#2B2B2B",
+    "Selected": false
+  },
+  {
+    "Category": "Gaming",
+    "Name": "GOG Galaxy",
+    "Id": "GOG.Galaxy",
+    "Description": "All-in-one gaming client for GOG library",
+    "Icon": "G",
+    "Color": "#9B59B6",
+    "Selected": false
+  },
+  {
+    "Category": "Gaming",
+    "Name": "Heroic Games Launcher",
+    "Id": "HeroicGamesLauncher.HeroicGamesLauncher",
+    "Description": "Open-source launcher for Epic and GOG games",
+    "Icon": "G",
+    "Color": "#E6692B",
+    "Selected": false
+  },
+  {
+    "Category": "Gaming",
+    "Name": "Parsec",
+    "Id": "Parsec.Parsec",
+    "Description": "Ultra low latency remote desktop for gaming",
+    "Icon": "G",
+    "Color": "#6C4DE4",
+    "Selected": false
+  },
+  {
+    "Category": "Gaming",
+    "Name": "Playnite",
+    "Id": "Playnite.Playnite",
+    "Description": "Open-source game library manager for all platforms",
+    "Icon": "G",
+    "Color": "#F05050",
+    "Selected": false
+  },
+  {
+    "Category": "Gaming",
+    "Name": "Steam",
+    "Id": "Valve.Steam",
+    "Description": "Most popular PC gaming platform in the world",
+    "Icon": "G",
+    "Color": "#1B2838",
+    "Selected": false
+  },
+  {
+    "Category": "Gaming",
+    "Name": "Ubisoft Connect",
+    "Id": "Ubisoft.Connect",
+    "Description": "Ubisoft game launcher and social platform",
+    "Icon": "G",
+    "Color": "#0070FF",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "Audacity",
+    "Id": "Audacity.Audacity",
+    "Description": "Free and open-source multi-track audio editor",
+    "Icon": "M",
+    "Color": "#0000CC",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "Blender",
+    "Id": "BlenderFoundation.Blender",
+    "Description": "Free and open 3D creation suite",
+    "Icon": "M",
+    "Color": "#E87D0D",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "Calibre",
+    "Id": "kovidgoyal.calibre",
+    "Description": "Powerful e-book management and conversion tool",
+    "Icon": "M",
+    "Color": "#7A6C52",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "DaVinci Resolve",
+    "Id": "Blackmagic.DaVinciResolve",
+    "Description": "Professional video editing, color grading and audio",
+    "Icon": "M",
+    "Color": "#FF9F00",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "GIMP",
+    "Id": "GIMP.GIMP",
+    "Description": "GNU Image Manipulation Program - free Photoshop alternative",
+    "Icon": "M",
+    "Color": "#9C4F00",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "HandBrake",
+    "Id": "HandBrake.HandBrake",
+    "Description": "Open-source video transcoder supporting any format",
+    "Icon": "M",
+    "Color": "#E74C3C",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "Inkscape",
+    "Id": "Inkscape.Inkscape",
+    "Description": "Free and open-source vector graphics editor",
+    "Icon": "M",
+    "Color": "#000000",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "IrfanView",
+    "Id": "IrfanSkiljan.IrfanView",
+    "Description": "Fast and compact image viewer and basic editor",
+    "Icon": "M",
+    "Color": "#007EC6",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "Kdenlive",
+    "Id": "KDE.Kdenlive",
+    "Description": "Free and open-source non-linear video editor",
+    "Icon": "M",
+    "Color": "#527AA8",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "Krita",
+    "Id": "KDE.Krita",
+    "Description": "Free professional digital painting application",
+    "Icon": "M",
+    "Color": "#3BABFF",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "MusicBee",
+    "Id": "MusicBee.MusicBee",
+    "Description": "Feature-rich music manager and player",
+    "Icon": "M",
+    "Color": "#6B4F9E",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "OBS Studio",
+    "Id": "OBSProject.OBSStudio",
+    "Description": "Free open-source streaming and screen recording software",
+    "Icon": "M",
+    "Color": "#302E31",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "ShareX",
+    "Id": "ShareX.ShareX",
+    "Description": "Advanced screenshot and screen recording tool",
+    "Icon": "M",
+    "Color": "#0E88D2",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "Spotify",
+    "Id": "Spotify.Spotify",
+    "Description": "Digital music streaming service",
+    "Icon": "M",
+    "Color": "#1DB954",
+    "Selected": false
+  },
+  {
+    "Category": "Media",
+    "Name": "VLC Media Player",
+    "Id": "VideoLAN.VLC",
+    "Description": "Free and open-source cross-platform media player",
+    "Icon": "M",
+    "Color": "#FF7F00",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "AutoHotkey",
+    "Id": "AutoHotkey.AutoHotkey",
+    "Description": "Powerful Windows automation scripting language",
+    "Icon": "P",
+    "Color": "#334455",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "CopyQ",
+    "Id": "hluk.CopyQ",
+    "Description": "Advanced clipboard manager with search and scripting",
+    "Icon": "P",
+    "Color": "#40AB44",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "Ditto Clipboard",
+    "Id": "Ditto.Ditto",
+    "Description": "Clipboard manager that extends the standard Windows clipboard",
+    "Icon": "P",
+    "Color": "#0D7377",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "Flux",
+    "Id": "flux.flux",
+    "Description": "Makes screen colour temperature adapt to time of day",
+    "Icon": "P",
+    "Color": "#F5A623",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "Flameshot",
+    "Id": "Flameshot.Flameshot",
+    "Description": "Powerful yet simple-to-use screenshot tool",
+    "Icon": "P",
+    "Color": "#F46C00",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "Greenshot",
+    "Id": "Greenshot.Greenshot",
+    "Description": "Light-weight screenshot tool with annotation features",
+    "Icon": "P",
+    "Color": "#7FBA00",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "KeePassXC",
+    "Id": "KeePassXCTeam.KeePassXC",
+    "Description": "Secure cross-platform open-source password manager",
+    "Icon": "P",
+    "Color": "#6CAC4D",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "Microsoft PowerToys",
+    "Id": "Microsoft.PowerToys",
+    "Description": "Power-user utilities suite for Windows",
+    "Icon": "P",
+    "Color": "#0078D4",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "Notion",
+    "Id": "Notion.Notion",
+    "Description": "All-in-one workspace for notes, tasks and databases",
+    "Icon": "P",
+    "Color": "#000000",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "Obsidian",
+    "Id": "Obsidian.Obsidian",
+    "Description": "Markdown note-taking with linked knowledge graph",
+    "Icon": "P",
+    "Color": "#7C3AED",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "PDF24 Creator",
+    "Id": "geeksoftwareGmbH.PDF24Creator",
+    "Description": "Free all-in-one PDF creator, editor and converter",
+    "Icon": "P",
+    "Color": "#E8151B",
+    "Selected": false
+  },
+  {
+    "Category": "Productivity",
+    "Name": "Thunderbird",
+    "Id": "Mozilla.Thunderbird",
+    "Description": "Free and open-source email client by Mozilla",
+    "Icon": "P",
+    "Color": "#0A84FF",
+    "Selected": false
+  },
+  {
+    "Category": "Security",
+    "Name": "Bitwarden",
+    "Id": "Bitwarden.Bitwarden",
+    "Description": "Open-source password manager with cloud sync",
+    "Icon": "S",
+    "Color": "#175DDC",
+    "Selected": false
+  },
+  {
+    "Category": "Security",
+    "Name": "Malwarebytes",
+    "Id": "Malwarebytes.Malwarebytes",
+    "Description": "Anti-malware and ransomware protection tool",
+    "Icon": "S",
+    "Color": "#00A1C9",
+    "Selected": false
+  },
+  {
+    "Category": "Security",
+    "Name": "ProtonVPN",
+    "Id": "ProtonTechnologies.ProtonVPN",
+    "Description": "Secure and privacy-focused VPN service",
+    "Icon": "S",
+    "Color": "#6D4AFF",
+    "Selected": false
+  },
+  {
+    "Category": "Security",
+    "Name": "VeraCrypt",
+    "Id": "IDRIX.VeraCrypt",
+    "Description": "Free disk encryption software based on TrueCrypt",
+    "Icon": "S",
+    "Color": "#2C5F9E",
+    "Selected": false
+  },
+  {
+    "Category": "Security",
+    "Name": "Wireshark",
+    "Id": "WiresharkFoundation.Wireshark",
+    "Description": "Network protocol analyser and packet capture tool",
+    "Icon": "S",
+    "Color": "#1679A7",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "7-Zip",
+    "Id": "7zip.7zip",
+    "Description": "Free file archiver with very high compression ratio",
+    "Icon": "U",
+    "Color": "#009FCC",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "Bulk Rename Utility",
+    "Id": "BulkRenameUtility.BulkRenameUtility",
+    "Description": "Powerful batch file renaming utility",
+    "Icon": "U",
+    "Color": "#8E44AD",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "CPU-Z",
+    "Id": "CPUID.CPU-Z",
+    "Description": "System info tool for CPU, RAM and motherboard details",
+    "Icon": "U",
+    "Color": "#E74C3C",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "CrystalDiskInfo",
+    "Id": "CrystalDewWorld.CrystalDiskInfo",
+    "Description": "HDD and SSD health monitoring and SMART tool",
+    "Icon": "U",
+    "Color": "#3498DB",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "CrystalDiskMark",
+    "Id": "CrystalDewWorld.CrystalDiskMark",
+    "Description": "Disk benchmark and read/write speed tester",
+    "Icon": "U",
+    "Color": "#2980B9",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "Everything Search",
+    "Id": "voidtools.Everything",
+    "Description": "Instantly locate any file on Windows by name",
+    "Icon": "U",
+    "Color": "#1ABC9C",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "FanControl",
+    "Id": "Rem0o.FanControl",
+    "Description": "Highly customisable fan speed control application",
+    "Icon": "U",
+    "Color": "#5BA4CF",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "GPU-Z",
+    "Id": "TechPowerUp.GPU-Z",
+    "Description": "GPU information and real-time monitoring utility",
+    "Icon": "U",
+    "Color": "#27AE60",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "HWiNFO64",
+    "Id": "REALiX.HWiNFO",
+    "Description": "Comprehensive hardware info and real-time monitoring",
+    "Icon": "U",
+    "Color": "#E67E22",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "HWMonitor",
+    "Id": "CPUID.HWMonitor",
+    "Description": "Monitors voltages, temperatures and fan speeds",
+    "Icon": "U",
+    "Color": "#C0392B",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "MSI Afterburner",
+    "Id": "Guru3D.Afterburner",
+    "Description": "GPU overclocking, monitoring and fan control utility",
+    "Icon": "U",
+    "Color": "#C0392B",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "NVCleanstall",
+    "Id": "TechPowerUp.NVCleanstall",
+    "Description": "Install only required NVIDIA driver components",
+    "Icon": "U",
+    "Color": "#76B900",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "PatchMyPC",
+    "Id": "PatchMyPC.PatchMyPC",
+    "Description": "Keeps third-party apps automatically up to date",
+    "Icon": "U",
+    "Color": "#0078D4",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "qBittorrent",
+    "Id": "qBittorrent.qBittorrent",
+    "Description": "Free and open-source BitTorrent client",
+    "Icon": "U",
+    "Color": "#4F81BD",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "Rufus",
+    "Id": "Rufus.Rufus",
+    "Description": "Create bootable USB drives from ISO images fast",
+    "Icon": "U",
+    "Color": "#E02020",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "Speccy",
+    "Id": "Piriform.Speccy",
+    "Description": "Advanced system information tool by CCleaner makers",
+    "Icon": "U",
+    "Color": "#00B4D8",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "Ventoy",
+    "Id": "Ventoy.Ventoy",
+    "Description": "Create multiboot USB drives supporting many ISO types",
+    "Icon": "U",
+    "Color": "#0277BD",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "WinDirStat",
+    "Id": "WinDirStat.WinDirStat",
+    "Description": "Visual disk usage statistics and cleanup tool",
+    "Icon": "U",
+    "Color": "#F39C12",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "WinRAR",
+    "Id": "RARLab.WinRAR",
+    "Description": "Powerful archive manager for RAR, ZIP and many formats",
+    "Icon": "U",
+    "Color": "#8B008B",
+    "Selected": false
+  },
+  {
+    "Category": "Utilities",
+    "Name": "WizTree",
+    "Id": "AntibodySoftware.WizTree",
+    "Description": "Fastest disk space analyser available for Windows",
+    "Icon": "U",
+    "Color": "#D35400",
+    "Selected": false
+  },
+  {
+    "Category": "Network",
+    "Name": "Angry IP Scanner",
+    "Id": "angryziber.AngryIPScanner",
+    "Description": "Fast and friendly network scanner",
+    "Icon": "N",
+    "Color": "#E44545",
+    "Selected": false
+  },
+  {
+    "Category": "Network",
+    "Name": "FileZilla Client",
+    "Id": "TimKosse.FileZilla.Client",
+    "Description": "Free FTP, FTPS and SFTP client",
+    "Icon": "N",
+    "Color": "#BF0000",
+    "Selected": false
+  },
+  {
+    "Category": "Network",
+    "Name": "MobaXterm",
+    "Id": "Mobatek.MobaXterm",
+    "Description": "Enhanced terminal with SSH, X11 and network tools",
+    "Icon": "N",
+    "Color": "#2C3E90",
+    "Selected": false
+  },
+  {
+    "Category": "Network",
+    "Name": "nmap",
+    "Id": "Insecure.Nmap",
+    "Description": "Network discovery and security auditing tool",
+    "Icon": "N",
+    "Color": "#44AA99",
+    "Selected": false
+  },
+  {
+    "Category": "Network",
+    "Name": "PuTTY",
+    "Id": "PuTTY.PuTTY",
+    "Description": "Free SSH, Telnet and serial console client",
+    "Icon": "N",
+    "Color": "#008B8B",
+    "Selected": false
+  },
+  {
+    "Category": "Network",
+    "Name": "WinSCP",
+    "Id": "WinSCP.WinSCP",
+    "Description": "Free SFTP, SCP, S3 and FTP client for Windows",
+    "Icon": "N",
+    "Color": "#003366",
+    "Selected": false
+  }
+]
