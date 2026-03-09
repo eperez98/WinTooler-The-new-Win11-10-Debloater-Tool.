@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WinToolerV1 — v0.5 BETA Release Notes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap');
+
+  :root {
+    --bg:       #080C10;
+    --bg2:      #0D1117;
+    --bg3:      #111820;
+    --border:   #1C2A38;
+    --border2:  #243040;
+    --accent:   #0078D4;
+    --accent2:  #1A9FFF;
+    --accent3:  #00D4FF;
+    --green:    #00CC6A;
+    --yellow:   #FFB900;
+    --red:      #FC3E3E;
+    --orange:   #F7630C;
+    --purple:   #9C9CFF;
+    --text1:    #E8EDF2;
+    --text2:    #8899AA;
+    --text3:    #445566;
+    --mono:     'JetBrains Mono', monospace;
+    --sans:     'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text1);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,120,212,0.015) 2px,
+      rgba(0,120,212,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Grid background */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,120,212,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,120,212,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HEADER ──────────────────────────────────────── */
+  header {
+    position: relative;
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 56px;
+    overflow: hidden;
+  }
+
+  .header-glow {
+    position: absolute;
+    top: -60px; left: -80px;
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(0,120,212,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .badge-beta   { color: var(--orange); border-color: var(--orange); background: rgba(247,99,12,0.1); }
+  .badge-ps     { color: var(--accent2); border-color: var(--accent); background: rgba(0,120,212,0.1); }
+  .badge-win    { color: var(--accent3); border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.07); }
+  .badge-date   { color: var(--text3); border-color: var(--border2); background: transparent; }
+  .badge-author { color: var(--green); border-color: rgba(0,204,106,0.4); background: rgba(0,204,106,0.07); }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+
+  .logo-icon {
+    width: 58px; height: 58px;
+    background: linear-gradient(135deg, #0078D4 0%, #004A8C 100%);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--sans);
+    font-size: 28px; font-weight: 800;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(0,120,212,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-icon::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(rgba(255,255,255,0.12), transparent);
+    border-radius: 14px 14px 0 0;
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text1);
+  }
+  h1 span { color: var(--accent2); }
+
+  .tagline {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 12px;
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  .ver-pill {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(0,120,212,0.25), rgba(0,212,255,0.1));
+    border: 1px solid rgba(0,120,212,0.5);
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent3);
+    letter-spacing: 0.06em;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0,120,212,0.2);
+  }
+
+  /* ── SECTION HEADERS ─────────────────────────────── */
+  .section { margin-bottom: 52px; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::before {
+    content: '//';
+    color: var(--text3);
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text1);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── HIGHLIGHT BOX ───────────────────────────────── */
+  .highlight {
+    background: linear-gradient(135deg, rgba(0,120,212,0.1) 0%, rgba(0,212,255,0.04) 100%);
+    border: 1px solid rgba(0,120,212,0.3);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+    color: var(--text1);
+    line-height: 1.7;
+  }
+  .highlight strong { color: var(--accent2); }
+
+  /* ── FEATURE CARDS ───────────────────────────────── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,120,212,0.4), transparent);
+  }
+
+  .card-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .card-title {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text1);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .tag-new      { background: rgba(0,204,106,0.15); color: var(--green); border: 1px solid rgba(0,204,106,0.3); }
+  .tag-fix      { background: rgba(255,185,0,0.12); color: var(--yellow); border: 1px solid rgba(255,185,0,0.3); }
+  .tag-improved { background: rgba(0,120,212,0.15); color: var(--accent2); border: 1px solid rgba(0,120,212,0.3); }
+  .tag-security { background: rgba(252,62,62,0.12); color: var(--red); border: 1px solid rgba(252,62,62,0.3); }
+
+  /* ── CHANGELOG LIST ──────────────────────────────── */
+  .log-list { list-style: none; }
+
+  .log-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(28,42,56,0.6);
+  }
+  .log-item:last-child { border-bottom: none; }
+
+  .log-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .dot-new      { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .dot-fix      { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+  .dot-improved { background: var(--accent2); box-shadow: 0 0 6px var(--accent2); }
+
+  .log-text { font-size: 13px; color: var(--text1); line-height: 1.6; }
+  .log-text code {
+    font-family: var(--mono);
+    font-size: 11px;
+    background: rgba(0,120,212,0.12);
+    border: 1px solid rgba(0,120,212,0.2);
+    border-radius: 3px;
+    padding: 1px 5px;
+    color: var(--accent3);
+  }
+  .log-text em { color: var(--text2); font-style: normal; font-size: 12px; }
+
+  /* ── BOOT TABLE ──────────────────────────────────── */
+  .boot-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-bottom: 8px;
+  }
+  .boot-table th {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+    background: var(--bg2);
+  }
+  .boot-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(28,42,56,0.5);
+    color: var(--text1);
+    vertical-align: top;
+  }
+  .boot-table tr:last-child td { border-bottom: none; }
+  .boot-table tr:hover td { background: rgba(0,120,212,0.04); }
+  .boot-table .step-num {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .boot-table .step-name {
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--text1);
+  }
+  .boot-table .step-desc { color: var(--text2); font-size: 12px; }
+  .new-row td { background: rgba(0,204,106,0.04); }
+  .new-row td .step-num { color: var(--green); }
+
+  /* ── THEME PREVIEW ───────────────────────────────── */
+  .theme-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .theme-card {
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid;
+    position: relative;
+    overflow: hidden;
+  }
+  .theme-dark {
+    background: #0F0F0F;
+    border-color: #222;
+  }
+  .theme-light {
+    background: #F3F3F3;
+    border-color: #D0D0D0;
+  }
+
+  .theme-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+  .theme-name {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .theme-dark .theme-name { color: #fff; }
+  .theme-light .theme-name { color: #1A1A1A; }
+
+  .swatch-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .swatch {
+    font-size: 10px;
+    font-family: var(--mono);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ── BUGFIX TABLE ────────────────────────────────── */
+  .fix-list { list-style: none; }
+  .fix-item {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(28,42,56,0.5);
+    align-items: start;
+  }
+  .fix-item:last-child { border-bottom: none; }
+  .fix-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--yellow);
+    background: rgba(255,185,0,0.1);
+    border: 1px solid rgba(255,185,0,0.25);
+    border-radius: 4px;
+    padding: 2px 4px;
+    text-align: center;
+    margin-top: 2px;
+  }
+  .fix-body { font-size: 13px; color: var(--text1); line-height: 1.6; }
+  .fix-body strong { color: var(--yellow); }
+  .fix-body code {
+    font-family: var(--mono); font-size: 11px;
+    background: rgba(255,185,0,0.08);
+    border: 1px solid rgba(255,185,0,0.18);
+    border-radius: 3px; padding: 1px 5px;
+    color: var(--yellow);
+  }
+  .fix-body em { color: var(--text2); font-style: normal; font-size: 12px; display: block; margin-top: 3px; }
+
+  /* ── WINGET CODES ────────────────────────────────── */
+  .code-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .code-table th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 8px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .code-table td { padding: 9px 14px; border-bottom: 1px solid rgba(28,42,56,0.4); }
+  .code-table tr:last-child td { border-bottom: none; }
+  .code-table tr:hover td { background: rgba(0,120,212,0.04); }
+  .code-ok   td:first-child { color: var(--green); }
+  .code-warn td:first-child { color: var(--yellow); }
+  .code-auto td:first-child { color: var(--accent2); }
+  .code-fail td:first-child { color: var(--red); }
+  .code-table .handled { color: var(--green); font-size: 13px; }
+  .code-table .partial  { color: var(--yellow); font-size: 13px; }
+  .code-table .unhandled{ color: var(--text3); font-size: 13px; }
+  .code-table td:first-child { font-family: var(--mono); font-size: 11px; }
+
+  /* ── LANG GRID ───────────────────────────────────── */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .lang-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .lang-flag { font-size: 28px; margin-bottom: 10px; display: block; }
+  .lang-name {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text1);
+    margin-bottom: 8px;
+  }
+  .lang-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+  /* ── KNOWN ISSUES ────────────────────────────────── */
+  .issue-list { list-style: none; }
+  .issue-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(28,42,56,0.4);
+  }
+  .issue-item:last-child { border-bottom: none; }
+  .issue-icon { color: var(--orange); font-size: 14px; margin-top: 2px; flex-shrink: 0; }
+  .issue-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .issue-text strong { color: var(--text1); }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 16px;
+  }
+
+  .footer-brand {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text2);
+  }
+  .footer-brand span { color: var(--accent2); }
+
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a {
+    font-size: 12px;
+    color: var(--text3);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent2); }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 40px 0;
+  }
+
+  /* ── ANIMATIONS ──────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  header          { animation: fadeUp 0.5s ease both; }
+  .section:nth-child(1) { animation: fadeUp 0.5s 0.1s ease both; }
+  .section:nth-child(2) { animation: fadeUp 0.5s 0.15s ease both; }
+  .section:nth-child(3) { animation: fadeUp 0.5s 0.2s ease both; }
+  .section:nth-child(4) { animation: fadeUp 0.5s 0.25s ease both; }
+  .section:nth-child(5) { animation: fadeUp 0.5s 0.3s ease both; }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(0,120,212,0.3); }
+    50%       { box-shadow: 0 0 40px rgba(0,120,212,0.5), 0 0 80px rgba(0,120,212,0.15); }
+  }
+  .logo-icon { animation: pulse-glow 3s ease-in-out infinite; }
+
+  /* cursor blink on tagline */
+  .tagline::after {
+    content: '|';
+    color: var(--accent);
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* toc */
+  .toc {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 48px;
+    font-size: 12px;
+  }
+  .toc-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+  .toc-list { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; }
+  .toc-list a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.15s;
+  }
+  .toc-list a:hover { color: var(--accent2); }
+  .toc-list a::before { content: '→ '; color: var(--text3); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-glow"></div>
+
+    <div class="badge-row">
+      <span class="badge badge-beta">v0.5 BETA</span>
+      <span class="badge badge-ps">PowerShell 5.1</span>
+      <span class="badge badge-win">Windows 10 / 11</span>
+      <span class="badge badge-date">March 2026</span>
+      <span class="badge badge-author">ErickP · Eperez98</span>
+    </div>
+
+    <div class="logo-row">
+      <div class="logo-icon">W</div>
+      <div>
+        <h1>WinTooler<span>V1</span></h1>
+      </div>
+    </div>
+
+    <p class="tagline">
+      Windows 10/11 optimization, debloat &amp; app management utility.<br>
+      Native WPF GUI · PowerShell 5.1 · No runtimes required
+    </p>
+
+    <div class="ver-pill">Release Notes — v0.5 BETA</div>
+  </header>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">// Contents</div>
+    <ul class="toc-list">
+      <li><a href="#whats-new">What's New</a></li>
+      <li><a href="#boot">Boot Sequence</a></li>
+      <li><a href="#themes">Dark / Light Mode</a></li>
+      <li><a href="#language">Language Support</a></li>
+      <li><a href="#bugfixes">Bug Fixes</a></li>
+      <li><a href="#winget">Winget Codes</a></li>
+      <li><a href="#known">Known Issues</a></li>
+      <li><a href="#install">How to Install</a></li>
+    </ul>
+  </div>
+
+  <!-- WHAT'S NEW -->
+  <div class="section" id="whats-new">
+    <div class="section-label">01</div>
+    <h2>What's New in v0.5</h2>
+
+    <div class="highlight">
+      This is the first public BETA of WinToolerV1. The core engine is complete and functional — install, uninstall, tweak, repair and update workflows all work end-to-end. Consider this a hardening release: stability, smart error handling, and polish.
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <span class="card-tag tag-new">New</span>
+        <div class="card-icon">🖥️</div>
+        <div class="card-title">Startup Selection Screen</div>
+        <div class="card-desc">A dedicated dialog appears before the main GUI. Pick your language and theme before anything else loads. The window background previews your theme choice in real-time.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-new">New</span>
+        <div class="card-icon">🌐</div>
+        <div class="card-title">English / Español</div>
+        <div class="card-desc">Full bilingual UI. Every nav label, button, page title, tweak description, status message and template name switches instantly when you pick ES on the startup screen.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-new">New</span>
+        <div class="card-icon">☽</div>
+        <div class="card-title">Dark &amp; Light Mode</div>
+        <div class="card-desc">Choose at startup or toggle anytime via the ☽/☀ button in the sidebar. All 12 colour tokens switch simultaneously — backgrounds, cards, borders, text, accents and status bar.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-new">New</span>
+        <div class="card-icon">📥</div>
+        <div class="card-title">Uninstall Tab</div>
+        <div class="card-desc">Queries your live <code>winget list</code> on open. Search, checkbox multi-select, and silent bulk uninstall. Refreshes after each run.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-new">New</span>
+        <div class="card-icon">⬆️</div>
+        <div class="card-title">App Updates Tab</div>
+        <div class="card-desc">Scanned at boot in the CLI window before the GUI opens. Red badge shows count. Update All, Update Selected, or Re-Check. Smart retry on version-mismatch and hash errors.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-new">New</span>
+        <div class="card-icon">💾</div>
+        <div class="card-title">Auto Restore Point</div>
+        <div class="card-desc">A system restore point is created at every launch before any changes are made. Bypasses Windows' 24hr cooldown automatically. Create additional manual restore points in the Repair tab.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-new">New</span>
+        <div class="card-icon">📋</div>
+        <div class="card-title">Tweak Templates</div>
+        <div class="card-desc">Four presets: <strong>None</strong> (clear all), <strong>Minimal</strong> (6 tweaks), <strong>Standard</strong> (13 tweaks), <strong>Heavy</strong> (20 tweaks). Use as a starting point then adjust manually.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-improved">Improved</span>
+        <div class="card-icon">🔒</div>
+        <div class="card-title">NuGet — No More Prompts</div>
+        <div class="card-desc">The old <code>Install-PackageProvider</code> always triggered an interactive yes/no prompt. Now downloads the DLL directly from Microsoft CDN — fully silent, no user input needed.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-improved">Improved</span>
+        <div class="card-icon">⚡</div>
+        <div class="card-title">Async SFC + DISM</div>
+        <div class="card-desc">Runs in a <code>Start-Job</code> background thread. Live output streams to the output console while the GUI stays fully interactive. No more freezes during a 15-minute scan.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-improved">Improved</span>
+        <div class="card-icon">🎨</div>
+        <div class="card-title">macOS-Style App Icons</div>
+        <div class="card-desc">App tiles in the Install tab now render with rounded-square frames and a gradient shine overlay, matching macOS dock icon aesthetics inside a Windows 11 Fluent interface.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-improved">Improved</span>
+        <div class="card-icon">🔧</div>
+        <div class="card-title">Network Reset Output</div>
+        <div class="card-desc">Replaced 30+ raw <code>netsh</code> lines with a 4-line clean summary. The blank "Resetting ," entries and Access-denied lines were normal but confusing — now hidden.</div>
+      </div>
+
+      <div class="card">
+        <span class="card-tag tag-improved">Improved</span>
+        <div class="card-icon">📦</div>
+        <div class="card-title">111 Apps · 10 Categories</div>
+        <div class="card-desc">Expanded catalog: Browsers, Communications, Development, Document, Gaming, Media, Network, Productivity, Security, Utilities. Zero apps pre-selected — you choose everything.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BOOT SEQUENCE -->
+  <div class="section" id="boot">
+    <div class="section-label">02</div>
+    <h2>GUI Boot Sequence</h2>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;">
+      Every launch prints a live status table to the CLI window before the GUI opens.
+      New steps introduced in v0.5 are highlighted.
+    </p>
+
+    <table class="boot-table">
+      <thead>
+        <tr>
+          <th>#</th><th>Stage</th><th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="step-num">01</td>
+          <td class="step-name">STA Thread Check</td>
+          <td class="step-desc">Detects MTA mode — auto-restarts with <code>-STA</code> if needed (WPF requirement)</td>
+        </tr>
+        <tr>
+          <td class="step-num">02</td>
+          <td class="step-name">Root Detection</td>
+          <td class="step-desc">3-tier path fallback — works from bat file, PowerShell direct, or right-click</td>
+        </tr>
+        <tr>
+          <td class="step-num">03</td>
+          <td class="step-name">Admin Verification</td>
+          <td class="step-desc">Confirms Administrator rights — exits cleanly if not elevated</td>
+        </tr>
+        <tr class="new-row">
+          <td class="step-num">04</td>
+          <td class="step-name">⭐ Restore Point</td>
+          <td class="step-desc">Creates system restore point before touching anything. Bypasses 24hr Windows cooldown automatically via registry key</td>
+        </tr>
+        <tr>
+          <td class="step-num">05</td>
+          <td class="step-name">winget Bootstrap</td>
+          <td class="step-desc">Locates winget. If absent: fetches VCLibs + UI.Xaml prereqs, downloads latest <code>.msixbundle</code> from GitHub API</td>
+        </tr>
+        <tr class="new-row">
+          <td class="step-num">06</td>
+          <td class="step-name">⭐ NuGet Provider</td>
+          <td class="step-desc">Downloads DLL directly from Microsoft CDN — no interactive yes/no prompt (was broken in previous builds)</td>
+        </tr>
+        <tr>
+          <td class="step-num">07</td>
+          <td class="step-name">PSWindowsUpdate</td>
+          <td class="step-desc">Installs from PSGallery if absent — needed for Windows Update tab</td>
+        </tr>
+        <tr>
+          <td class="step-num">08</td>
+          <td class="step-name">Execution Policy</td>
+          <td class="step-desc">Relaxes to <code>RemoteSigned</code> if set to <code>Restricted</code> or <code>AllSigned</code></td>
+        </tr>
+        <tr>
+          <td class="step-num">09</td>
+          <td class="step-name">.NET Framework</td>
+          <td class="step-desc">Reads registry release key — detects 4.5 through 4.8.1 via <code>if/elseif</code> chain (fixed from broken <code>switch</code>)</td>
+        </tr>
+        <tr>
+          <td class="step-num">10</td>
+          <td class="step-name">winget Sources</td>
+          <td class="step-desc">Runs <code>winget source update</code> to refresh package metadata before any installs</td>
+        </tr>
+        <tr class="new-row">
+          <td class="step-num">11</td>
+          <td class="step-name">⭐ App Update Scan</td>
+          <td class="step-desc">Runs <code>winget upgrade</code>, parses all available updates, stores in memory — shown in App Updates tab with count badge</td>
+        </tr>
+        <tr>
+          <td class="step-num">12</td>
+          <td class="step-name">Module Load</td>
+          <td class="step-desc">Dot-sources <code>repair.ps1</code>, <code>tweaks.ps1</code>, <code>updates.ps1</code></td>
+        </tr>
+        <tr>
+          <td class="step-num">13</td>
+          <td class="step-name">Config Load</td>
+          <td class="step-desc">Loads <code>apps.json</code> (111), <code>tweaks.json</code> (23), <code>services.json</code> (18)</td>
+        </tr>
+        <tr class="new-row">
+          <td class="step-num">14</td>
+          <td class="step-name">⭐ Startup Screen</td>
+          <td class="step-desc">Language + Theme picker opens. Selection applies to entire main GUI instantly</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- THEMES -->
+  <div class="section" id="themes">
+    <div class="section-label">03</div>
+    <h2>Dark Mode / Light Mode</h2>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:20px;">
+      Choose on the startup screen or toggle anytime with the ☽ / ☀ button in the sidebar. No restart needed — all 12 colour tokens switch simultaneously.
+    </p>
+    <div class="theme-row">
+      <div class="theme-card theme-dark">
+        <span class="theme-icon">☽</span>
+        <div class="theme-name">Dark Mode</div>
+        <div class="swatch-row">
+          <span class="swatch" style="background:#0F0F0F;color:#666;border-color:#222">#0F0F0F BG</span>
+          <span class="swatch" style="background:#161616;color:#666;border-color:#2A2A2A">#161616 Surface</span>
+          <span class="swatch" style="background:#0078D4;color:#fff">#0078D4 Accent</span>
+          <span class="swatch" style="background:#1E3A5F;color:#4FC3F7">#1E3A5F Nav Active</span>
+          <span class="swatch" style="background:#00CC6A20;color:#00CC6A;border-color:#00CC6A40">#00CC6A Green</span>
+        </div>
+      </div>
+      <div class="theme-card theme-light">
+        <span class="theme-icon" style="color:#F59E0B">☀</span>
+        <div class="theme-name" style="color:#1A1A1A">Light Mode</div>
+        <div class="swatch-row">
+          <span class="swatch" style="background:#F3F3F3;color:#888;border-color:#CCC">#F3F3F3 BG</span>
+          <span class="swatch" style="background:#FFFFFF;color:#888;border-color:#DDD">#FFFFFF Surface</span>
+          <span class="swatch" style="background:#0067C0;color:#fff">#0067C0 Accent</span>
+          <span class="swatch" style="background:#E3F0FF;color:#0067C0;border-color:#C0D8EE">#E3F0FF Nav Active</span>
+          <span class="swatch" style="background:#107C1020;color:#107C10;border-color:#107C1040">#107C10 Green</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LANGUAGE -->
+  <div class="section" id="language">
+    <div class="section-label">04</div>
+    <h2>Language Support</h2>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:20px;">
+      Selected once on the startup screen. Applied to every string in the UI — no mixed languages.
+    </p>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <span class="lang-flag">🇺🇸</span>
+        <div class="lang-name">English</div>
+        <div class="lang-desc">
+          Default language. All tab labels, button text, tweak descriptions, template names, status messages, and status bar text are in English.
+        </div>
+      </div>
+      <div class="lang-card">
+        <span class="lang-flag">🇪🇸</span>
+        <div class="lang-name">Español</div>
+        <div class="lang-desc">
+          Traducción completa de la interfaz. Etiquetas de pestañas, botones, descripciones de ajustes, nombres de plantillas y mensajes de estado en español.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BUG FIXES -->
+  <div class="section" id="bugfixes">
+    <div class="section-label">05</div>
+    <h2>Bug Fixes</h2>
+
+    <ul class="fix-list">
+
+      <li class="fix-item">
+        <div class="fix-num">F1</div>
+        <div class="fix-body">
+          <strong>GUI instant-close on launch</strong> — <code>$PSScriptRoot</code> was empty when launched via <code>Launch.bat</code>, so the script couldn't locate <code>gui.ps1</code>. Fixed with a 3-tier path fallback: <code>$PSScriptRoot</code> → <code>$MyInvocation.MyCommand.Path</code> → <code>$PWD.Path</code>.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F2</div>
+        <div class="fix-body">
+          <strong>WPF window killed instantly (MTA mode)</strong> — WPF requires STA threading. PowerShell 5.1 defaults to MTA. Added <code>-STA</code> to <code>Launch.bat</code> and a self-restart block that detects non-STA and relaunches automatically.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F3</div>
+        <div class="fix-body">
+          <strong>XAML XML parse crash</strong> — Unicode box-drawing characters were converted to <code>---</code> during editing, making XAML comments like <code>&lt;!-- --- --&gt;</code> illegal XML (double-dash in comments). All such patterns cleaned; window title sanitised.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F4</div>
+        <div class="fix-body">
+          <strong>LetterSpacing crash on .NET Framework</strong> — <code>LetterSpacing</code> is a .NET 6+ WPF property. PowerShell 5.1 uses the older .NET Framework WPF which doesn't support it. Attribute removed.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F5</div>
+        <div class="fix-body">
+          <strong>Install tab showed no apps</strong> — Two root causes: (1) <code>$script:</code> scope inside dot-sourced functions pointed to the wrong script context — fixed by switching shared variables to <code>$global:</code>. (2) <code>Set-Variable -Name "script:AppCatalog"</code> created a literal variable named <code>script:AppCatalog</code> instead of a scoped one — fixed with direct assignment.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F6</div>
+        <div class="fix-body">
+          <strong>Services tab crash — <code>$action:</code> scope error</strong> — PowerShell interprets <code>"Service $action: $svcName"</code> as a scope-qualified variable reference (<code>$action:</code> like <code>$env:</code>). Fixed by delimiting as <code>${action}</code>.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F7</div>
+        <div class="fix-body">
+          <strong>.NET version showing all matches</strong> — <code>switch ($true)</code> falls through all matching conditions in PowerShell unless <code>break</code> is used. The version string printed as <code>"4.8.1 4.8 4.7.2 4.6.2"</code>. Replaced with an <code>if/elseif</code> chain.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F8</div>
+        <div class="fix-body">
+          <strong>NuGet provider interactive prompt ignored</strong> — <code>Install-PackageProvider</code> always prompts interactively even with <code>-Force</code>. The user's <code>N</code> keypress was consumed but the install ran anyway via a race condition. Fixed by downloading the DLL directly from <code>cdn.oneget.org</code> — zero prompts.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F9</div>
+        <div class="fix-body">
+          <strong>Restore point falsely reported as created</strong> — Windows silently skips restore point creation if one was made in the last 24hrs, but the catch block still printed "created". Now detects the cooldown, sets <code>SystemRestorePointCreationFrequency=0</code> and retries, or reports the skip accurately.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F10</div>
+        <div class="fix-body">
+          <strong>SFC + DISM freezes the GUI</strong> — Both commands blocked the WPF dispatcher thread, making the window completely unresponsive for up to 15 minutes. Fixed with <code>Start-Job</code> async execution + <code>Dispatcher.Invoke</code> streaming of live output to the console box.
+        </div>
+      </li>
+
+      <li class="fix-item">
+        <div class="fix-num">F11</div>
+        <div class="fix-body">
+          <strong>App updates reporting failures incorrectly</strong> —  Exit code <code>-1978335189</code> ("no applicable update") was shown as a failure. This happens when winget's metadata disagrees with the installer's version. Now auto-retried with <code>--force</code>; if it succeeds, counts as updated; if not, removed from list as "already current" rather than "failed".
+          <em>Exit code <code>-1978335230</code> (hash mismatch) now clears the winget LocalCache and retries once.</em>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WINGET CODES -->
+  <div class="section" id="winget">
+    <div class="section-label">06</div>
+    <h2>Winget Exit Code Handling</h2>
+    <table class="code-table">
+      <thead>
+        <tr><th>Exit Code</th><th>Meaning</th><th>Handled</th></tr>
+      </thead>
+      <tbody>
+        <tr class="code-ok">
+          <td>0</td>
+          <td style="color:var(--text1)">Success</td>
+          <td class="handled">✓</td>
+        </tr>
+        <tr class="code-auto">
+          <td>-1978335138</td>
+          <td style="color:var(--text1)">Scope error (machine scope rejected)</td>
+          <td class="handled">✓ Auto-retry with <code style="font-size:11px;color:var(--accent2)">--scope user</code></td>
+        </tr>
+        <tr class="code-warn">
+          <td>-1978335189</td>
+          <td style="color:var(--text1)">No applicable update found (version mismatch)</td>
+          <td class="partial">✓ Auto-retry with <code style="font-size:11px;color:var(--yellow)">--force</code></td>
+        </tr>
+        <tr class="code-warn">
+          <td>-1978335230</td>
+          <td style="color:var(--text1)">Installer hash mismatch</td>
+          <td class="partial">✓ Cache cleared + retried once</td>
+        </tr>
+        <tr class="code-warn">
+          <td>-1978335212</td>
+          <td style="color:var(--text1)">Hash mismatch variant</td>
+          <td class="partial">⚠ Flagged — retry later</td>
+        </tr>
+        <tr class="code-fail">
+          <td>-1978335216</td>
+          <td style="color:var(--text1)">Package not found in any winget source</td>
+          <td class="unhandled">— Reported as not found</td>
+        </tr>
+        <tr class="code-ok">
+          <td>-1978334972</td>
+          <td style="color:var(--text1)">Installer blocked by policy</td>
+          <td class="unhandled">— Logged, reported</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KNOWN ISSUES -->
+  <div class="section" id="known">
+    <div class="section-label">07</div>
+    <h2>Known Issues / Limitations</h2>
+    <ul class="issue-list">
+      <li class="issue-item">
+        <span class="issue-icon">⚠</span>
+        <span class="issue-text"><strong>Heavy template tweaks are irreversible.</strong> Removing Microsoft Bloatware and Xbox components via the Heavy template cannot be undone with the Undo button. The boot-time restore point is your safety net.</span>
+      </li>
+      <li class="issue-item">
+        <span class="issue-icon">⚠</span>
+        <span class="issue-text"><strong>winget package availability varies.</strong> Some apps in the catalog may not be available in all regions or may be temporarily delisted from winget sources. These are reported as "Not found" with exit code <code>-1978335216</code>.</span>
+      </li>
+      <li class="issue-item">
+        <span class="issue-icon">⚠</span>
+        <span class="issue-text"><strong>PSWindowsUpdate module required for Updates tab.</strong> If PSGallery is blocked by your organization's network policy, the Windows Update tab will error. All other tabs remain fully functional.</span>
+      </li>
+      <li class="issue-item">
+        <span class="issue-icon">⚠</span>
+        <span class="issue-text"><strong>Language cannot be changed after launch</strong> without restarting the app. The startup screen only appears once per run. This will be addressed in a future release with an in-GUI language toggle.</span>
+      </li>
+      <li class="issue-item">
+        <span class="issue-icon">⚠</span>
+        <span class="issue-text"><strong>System Protection must be enabled</strong> on the C: drive for restore points to work. WinToolerV1 attempts to enable it automatically, but some managed environments may block this via Group Policy.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- INSTALL -->
+  <div class="section" id="install">
+    <div class="section-label">08</div>
+    <h2>How to Install</h2>
+    <ul class="log-list">
+      <li class="log-item">
+        <div class="log-dot dot-new"></div>
+        <div class="log-text">Download <code>WinToolerV1_v05_BETA.zip</code> from the releases page</div>
+      </li>
+      <li class="log-item">
+        <div class="log-dot dot-new"></div>
+        <div class="log-text">Extract anywhere — Desktop, Downloads, <code>C:\Tools</code>, etc.</div>
+      </li>
+      <li class="log-item">
+        <div class="log-dot dot-new"></div>
+        <div class="log-text">Right-click <code>Launch.bat</code> → <strong>Run as administrator</strong></div>
+      </li>
+      <li class="log-item">
+        <div class="log-dot dot-new"></div>
+        <div class="log-text">Click <strong>Yes</strong> on the UAC prompt — watch the CLI boot sequence complete</div>
+      </li>
+      <li class="log-item">
+        <div class="log-dot dot-new"></div>
+        <div class="log-text">On the startup screen: pick <strong>English</strong> or <strong>Español</strong>, then <strong>Dark</strong> or <strong>Light</strong> — click <strong>Launch WinToolerV1</strong></div>
+      </li>
+    </ul>
+
+    <div class="highlight" style="margin-top:20px;">
+      <strong>No installation required.</strong> WinToolerV1 runs entirely from the extracted folder. No registry entries are created for the app itself, no background services are installed, and it can be deleted by simply removing the folder.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      WinTooler<span>V1</span> — v0.5 BETA · MIT License
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/eperez98">github.com/eperez98</a>
+      <a href="https://github.com/eperez98/WinToolerV1">Repository</a>
+      <a href="https://github.com/christitustech/winutil">Inspired by winutil</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
