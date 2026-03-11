@@ -1,0 +1,232 @@
+[
+  {
+    "Category": "Performance",
+    "Name": "High Performance Power Plan",
+    "Key": "HighPerfPower",
+    "Description": "Switch to High Performance power plan for maximum CPU speed",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Set-HighPerformancePower"
+  },
+  {
+    "Category": "Performance",
+    "Name": "Disable SysMain (Superfetch)",
+    "Key": "DisableSysMain",
+    "Description": "Stops Superfetch service. Improves performance on SSDs.",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-SysMain"
+  },
+  {
+    "Category": "Performance",
+    "Name": "Disable Windows Search Indexing",
+    "Key": "DisableSearch",
+    "Description": "Reduces disk I/O by stopping file indexing. Search still works.",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-SearchIndexing"
+  },
+  {
+    "Category": "Performance",
+    "Name": "Reduce Visual Animations",
+    "Key": "ReduceAnimations",
+    "Description": "Disables fade, slide and shadow effects for snappier UI",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Reduce-Animations"
+  },
+  {
+    "Category": "Performance",
+    "Name": "Disable Hibernation",
+    "Key": "DisableHibernation",
+    "Description": "Frees up disk space (equal to RAM size) by removing hiberfil.sys",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-Hibernation"
+  },
+  {
+    "Category": "Performance",
+    "Name": "GameMode & GPU Scheduling",
+    "Key": "GameMode",
+    "Description": "Enables Windows GameMode and Hardware-Accelerated GPU Scheduling",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Enable-GameMode"
+  },
+  {
+    "Category": "Privacy",
+    "Name": "Disable Telemetry",
+    "Key": "DisableTelemetry",
+    "Description": "Sets data collection to minimum (Security level). Stops DiagTrack.",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-Telemetry"
+  },
+  {
+    "Category": "Privacy",
+    "Name": "Disable Advertising ID",
+    "Key": "DisableAdID",
+    "Description": "Prevents apps from using your advertising ID for personalized ads",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-AdvertisingId"
+  },
+  {
+    "Category": "Privacy",
+    "Name": "Disable Activity History",
+    "Key": "DisableActivity",
+    "Description": "Stops Windows from recording app usage and activity timeline",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-ActivityHistory"
+  },
+  {
+    "Category": "Privacy",
+    "Name": "Disable Location Services",
+    "Key": "DisableLocation",
+    "Description": "Blocks apps from accessing your device location",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-LocationServices"
+  },
+  {
+    "Category": "Privacy",
+    "Name": "Disable Webcam Access",
+    "Key": "DisableWebcam",
+    "Description": "Blocks all apps from accessing the webcam",
+    "Risk": "Medium",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-WebcamAccess"
+  },
+  {
+    "Category": "Privacy",
+    "Name": "Disable Microphone Access",
+    "Key": "DisableMic",
+    "Description": "Blocks all apps from accessing the microphone",
+    "Risk": "Medium",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-MicrophoneAccess"
+  },
+  {
+    "Category": "Privacy",
+    "Name": "Block Telemetry Hosts",
+    "Key": "BlockTelemetryHosts",
+    "Description": "Adds Microsoft telemetry domains to HOSTS file (blocks at network level)",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Block-TelemetryHosts"
+  },
+  {
+    "Category": "UI & Explorer",
+    "Name": "Enable Dark Mode",
+    "Key": "DarkMode",
+    "Description": "Switches Windows and apps to dark theme",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Enable-DarkMode"
+  },
+  {
+    "Category": "UI & Explorer",
+    "Name": "Show File Extensions",
+    "Key": "ShowExtensions",
+    "Description": "Shows file extensions in Explorer (e.g. .exe, .txt, .jpg)",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Show-FileExtensions"
+  },
+  {
+    "Category": "UI & Explorer",
+    "Name": "Show Hidden Files",
+    "Key": "ShowHidden",
+    "Description": "Reveals hidden files and folders in Explorer",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Show-HiddenFiles"
+  },
+  {
+    "Category": "UI & Explorer",
+    "Name": "Remove Start Menu Ads",
+    "Key": "RemoveStartAds",
+    "Description": "Disables sponsored apps and ads in the Start menu",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Remove-StartMenuAds"
+  },
+  {
+    "Category": "UI & Explorer",
+    "Name": "Clean Taskbar",
+    "Key": "CleanTaskbar",
+    "Description": "Removes Task View, News, Widgets and Cortana from taskbar",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Clean-Taskbar"
+  },
+  {
+    "Category": "UI & Explorer",
+    "Name": "Disable Bing Search in Start",
+    "Key": "DisableBingStart",
+    "Description": "Stops Start menu from sending searches to Bing",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-BingSearch"
+  },
+  {
+    "Category": "Bloatware",
+    "Name": "Remove Microsoft Bloatware",
+    "Key": "RemoveMSBloat",
+    "Description": "Uninstalls 30+ pre-installed Microsoft apps (News, Weather, Skype...)",
+    "Risk": "Medium",
+    "Reversible": false,
+    "Default": false,
+    "Script": "Remove-MSBloatware"
+  },
+  {
+    "Category": "Bloatware",
+    "Name": "Remove Xbox Components",
+    "Key": "RemoveXbox",
+    "Description": "Removes Xbox app, Game Bar, Game Overlay (keep if you game on Xbox)",
+    "Risk": "Medium",
+    "Reversible": false,
+    "Default": false,
+    "Script": "Remove-XboxApps"
+  },
+  {
+    "Category": "Bloatware",
+    "Name": "Disable Edge Bloat",
+    "Key": "DisableEdgeBloat",
+    "Description": "Disables Edge startup boost, shopping assistant and Bing suggestions",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-EdgeBloat"
+  },
+  {
+    "Category": "Bloatware",
+    "Name": "Disable OneDrive Startup",
+    "Key": "DisableOneDrive",
+    "Description": "Prevents OneDrive from launching at startup",
+    "Risk": "Low",
+    "Reversible": true,
+    "Default": false,
+    "Script": "Disable-OneDrive"
+  }
+]
