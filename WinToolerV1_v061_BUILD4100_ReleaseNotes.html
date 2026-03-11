@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WinToolerV1 — Release Notes v0.6.1 BETA Build 4100</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0d1117;
+    --surface:  #161b22;
+    --surface2: #1c2330;
+    --border:   #30363d;
+    --accent:   #0078d4;
+    --accent2:  #60cdff;
+    --green:    #3fb950;
+    --orange:   #e3b341;
+    --red:      #f85149;
+    --text:     #e6edf3;
+    --text2:    #8b949e;
+    --text3:    #b1bac4;
+    --mono:     'JetBrains Mono', monospace;
+    --sans:     'Figtree', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    background: linear-gradient(135deg, #0d1117 0%, #0f1923 50%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 0 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 800px 400px at 50% 0%, rgba(0,120,212,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-icon {
+    width: 72px; height: 72px;
+    background: linear-gradient(145deg, #1a2a3a, #0d1f2e);
+    border: 1px solid rgba(0,120,212,0.4);
+    border-radius: 20px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 40px rgba(0,120,212,0.2);
+  }
+  .header h1 {
+    font-size: 32px; font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .header h1 span { color: var(--accent2); }
+  .header .subtitle {
+    color: var(--text2); font-size: 14px; font-weight: 400;
+    margin-bottom: 24px;
+  }
+  .badge-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 12px;
+    font-size: 12px; font-weight: 500; font-family: var(--mono);
+    color: var(--text3);
+  }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .badge.blue .dot  { background: var(--accent2); }
+  .badge.green .dot { background: var(--green); }
+  .badge.gray .dot  { background: var(--text2); }
+  .badge.win .dot   { background: #0078d4; }
+
+  /* ---- LAYOUT ---- */
+  .container { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+
+  /* ---- STATS ROW ---- */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin-bottom: 48px;
+  }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+    text-align: center;
+    transition: border-color .2s;
+  }
+  .stat-card:hover { border-color: rgba(0,120,212,0.5); }
+  .stat-num {
+    font-size: 36px; font-weight: 700; font-family: var(--mono);
+    color: var(--accent2); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 12px; color: var(--text2); font-weight: 500; text-transform: uppercase; letter-spacing: .5px; }
+
+  /* ---- SECTION ---- */
+  .section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--text2); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* ---- CHANGE ITEM ---- */
+  .change-list { display: flex; flex-direction: column; gap: 8px; }
+  .change {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+    display: flex; gap: 12px; align-items: flex-start;
+    transition: border-color .15s, background .15s;
+  }
+  .change:hover { background: var(--surface2); border-color: rgba(0,120,212,0.3); }
+  .change-badge {
+    font-size: 10px; font-weight: 700; font-family: var(--mono);
+    padding: 3px 8px; border-radius: 6px; flex-shrink: 0; margin-top: 2px;
+    text-transform: uppercase; letter-spacing: .5px;
+  }
+  .badge-fix  { background: rgba(248,81,73,0.15);  color: #f85149; border: 1px solid rgba(248,81,73,0.3); }
+  .badge-new  { background: rgba(63,185,80,0.15);  color: #3fb950; border: 1px solid rgba(63,185,80,0.3); }
+  .badge-impv { background: rgba(227,179,65,0.15); color: #e3b341; border: 1px solid rgba(227,179,65,0.3); }
+  .change-text { flex: 1; font-size: 14px; line-height: 1.5; }
+  .change-text strong { color: var(--text); font-weight: 600; }
+  .change-text .detail { color: var(--text2); font-size: 13px; margin-top: 3px; }
+  .change-text code {
+    font-family: var(--mono); font-size: 12px;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1px 5px; color: var(--accent2);
+  }
+
+  /* ---- CATALOG TABLE ---- */
+  .cat-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .cat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .cat-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .cat-count { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--accent2); }
+  .cat-examples { font-size: 11.5px; color: var(--text2); margin-top: 4px; line-height: 1.4; }
+
+  /* ---- REQTS ---- */
+  .req-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .req-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .req-icon { font-size: 18px; margin-top: 1px; }
+  .req-label { font-size: 12px; color: var(--text2); margin-bottom: 2px; font-weight: 500; text-transform: uppercase; letter-spacing: .4px; }
+  .req-value { font-size: 14px; color: var(--text); font-weight: 500; }
+
+  /* ---- HISTORY ---- */
+  .history-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px; margin-bottom: 10px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .history-version { font-family: var(--mono); font-weight: 700; color: var(--text2); font-size: 13px; min-width: 80px; }
+  .history-version .v-num { color: var(--accent2); font-size: 16px; display: block; margin-bottom: 2px; }
+  .history-desc { font-size: 13.5px; color: var(--text3); }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    border-top: 1px solid var(--border);
+    text-align: center; padding: 32px 24px;
+    color: var(--text2); font-size: 13px;
+  }
+  .footer a { color: var(--accent2); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .req-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-icon">⚙️</div>
+  <h1>WinTooler<span>V1</span></h1>
+  <div class="subtitle">Windows 11 / 10 System Utility — PowerShell + WPF</div>
+  <div class="badge-row">
+    <span class="badge blue"><span class="dot"></span>v0.6.1 BETA</span>
+    <span class="badge gray"><span class="dot"></span>Build 4100</span>
+    <span class="badge win"><span class="dot"></span>Windows 10 / 11</span>
+    <span class="badge green"><span class="dot"></span>March 2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num">376</div>
+      <div class="stat-label">Curated Apps</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">23</div>
+      <div class="stat-label">System Tweaks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">18</div>
+      <div class="stat-label">Services</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Languages</div>
+    </div>
+  </div>
+
+  <!-- CRITICAL FIXES -->
+  <div class="section">
+    <div class="section-title">Critical Bug Fixes — App Manager</div>
+    <div class="change-list">
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>Apps never downloaded — root cause found</strong>
+          <div class="detail"><code>Start-Process -NoNewWindow</code> fails silently inside <code>Start-Job</code>. Background jobs have no console window — the flag can't attach to anything and the process exits immediately. Replaced with the <code>&amp;</code> call operator which always blocks correctly in any execution context.</div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>Install job returned 0 results despite running</strong>
+          <div class="detail"><code>Hashtable</code> values serialized across job boundaries become <code>Deserialized.System.Collections.Hashtable</code> — dot-notation <code>.Success</code> always returns <code>$null</code>. Jobs now emit <code>[PSCustomObject]</code> and comparison uses explicit <code>-eq $true</code>.</div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>Only first app installed when multiple selected</strong>
+          <div class="detail"><code>Start-Job -ArgumentList ($array, $str)</code> unrolls the array — each element maps to a separate param instead of the whole list. Now serialized as a compact JSON string and deserialized with <code>ConvertFrom-Json</code> inside the job.</div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>Winget path resolution fails inside elevated jobs</strong>
+          <div class="detail"><code>Test-Path</code> on winget's WindowsApps symlink can return <code>$false</code> in an elevated background job. Now falls back to <code>Get-Command winget</code> automatically if the path test fails.</div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>Microsoft Store apps always failed to install</strong>
+          <div class="detail">IDs like <code>9PF4KZ2VN4W9</code> (TranslucentTB), <code>9NNCB5BS59PH</code> (Tidal), <code>9P07XNM5CHP0</code> (Ambie) are Store product IDs — they need <code>--source msstore</code> not <code>--source winget</code>. Now auto-detected by regex <code>^[0-9A-Z]{10,16}$</code>.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OTHER FIXES -->
+  <div class="section">
+    <div class="section-title">Additional Fixes</div>
+    <div class="change-list">
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>3 incorrect winget package IDs corrected</strong>
+          <div class="detail">
+            <code>starship</code> → <code>Starship.Starship</code> &nbsp;·&nbsp;
+            <code>netbird</code> → <code>Netbird.Netbird</code> &nbsp;·&nbsp;
+            <code>ForceAutoHDR.7gxycn08</code> → <code>7gxycn08.ForceAutoHDR</code> (publisher and package were reversed)
+          </div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>UTF-8 parse error at GUI startup</strong>
+          <div class="detail">Box-drawing Unicode chars in PS comments caused PowerShell 5.1 to read the file as Windows-1252. Byte <code>0x94</code> in Windows-1252 is <code>"</code> (right double quote), corrupting the parser. File re-saved as UTF-8 with BOM (<code>EF BB BF</code>); all non-ASCII removed from PS code.</div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>DispatcherTimer crash on install/uninstall</strong>
+          <div class="detail">Removed <code>.GetNewClosure()</code> from all <code>DispatcherTimer.Add_Tick</code> handlers. Job IDs are now stored as <code>$script:AMInstallJobId</code> / <code>$script:AMUninstJobId</code> for reliable cross-scope access.</div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-fix">Fix</span>
+        <div class="change-text">
+          <strong>Category click crash in App Manager</strong>
+          <div class="detail">Eliminated <code>.GetNewClosure()</code> from all WPF event handlers. Per-element data (category names, app IDs) now stored in the element's <code>Tag</code> property and read via <code>$this.Tag</code> inside handlers.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NEW -->
+  <div class="section">
+    <div class="section-title">New in Build 4100</div>
+    <div class="change-list">
+
+      <div class="change">
+        <span class="change-badge badge-new">New</span>
+        <div class="change-text">
+          <strong>376-app catalog</strong>
+          <div class="detail">Expanded from 111 to 376 curated apps across 9 categories, sourced from ChrisTitusTech/winutil. Includes full Utilities, Multimedia, Development, Document, Microsoft Tools, Communications, Games, Pro Tools, and Browsers libraries.</div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-new">New</span>
+        <div class="change-text">
+          <strong>Install diagnostic log</strong>
+          <div class="detail">Every install session writes a timestamped log to <code>%TEMP%\WinTooler_install_job.log</code> — records the resolved winget path, every app attempted, arguments passed, and exit codes returned.</div>
+        </div>
+      </div>
+
+      <div class="change">
+        <span class="change-badge badge-new">New</span>
+        <div class="change-text">
+          <strong>Chocolatey fallback</strong>
+          <div class="detail">If winget fails for an app that has a Chocolatey ID in the catalog, WinTooler automatically retries via <code>choco install</code> before reporting failure.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APP CATALOG -->
+  <div class="section">
+    <div class="section-title">App Catalog — 376 Apps</div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-count">134</div>
+        <div class="cat-name">Utilities</div>
+        <div class="cat-examples">7-Zip, Everything, KeePassXC, qBittorrent, Rufus, Ventoy, Rainmeter, AutoHotkey, BleachBit, WizTree…</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-count">59</div>
+        <div class="cat-name">Multimedia Tools</div>
+        <div class="cat-examples">VLC, OBS Studio, Audacity, GIMP, Blender, Inkscape, Krita, Kdenlive, HandBrake, ShareX, foobar2000…</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-count">56</div>
+        <div class="cat-name">Development</div>
+        <div class="cat-examples">VS Code, Git, Node.js, Python, Docker, JetBrains Toolbox, Postman, Neovim, Zed, Rust, Go…</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-count">25</div>
+        <div class="cat-name">Document</div>
+        <div class="cat-examples">LibreOffice, Obsidian, Notepad++, Sumatra PDF, Joplin, Calibre, Zotero, Logseq, AFFiNE…</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-count">25</div>
+        <div class="cat-name">Microsoft Tools</div>
+        <div class="cat-examples">PowerToys, Windows Terminal, .NET Runtimes, Sysinternals Suite, PowerShell, NuGet, SSMS…</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-count">22</div>
+        <div class="cat-name">Communications</div>
+        <div class="cat-examples">Discord, Signal, Telegram, Slack, Teams, Thunderbird, Zoom, Vesktop, Session, Element…</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-count">20</div>
+        <div class="cat-name">Games</div>
+        <div class="cat-examples">Steam, Epic Games, GOG Galaxy, Heroic, Playnite, Moonlight, Sunshine, Parsec, Itch.io…</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-count">18</div>
+        <div class="cat-name">Pro Tools</div>
+        <div class="cat-examples">Nmap, Wireshark, PuTTY, WinSCP, RustDesk, Mullvad VPN, WireGuard, Portmaster, HeidiSQL…</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-count">17</div>
+        <div class="cat-name">Browsers</div>
+        <div class="cat-examples">Brave, Firefox, LibreWolf, Zen Browser, Thorium, Tor Browser, Vivaldi, Waterfox, Floorp…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REQUIREMENTS -->
+  <div class="section">
+    <div class="section-title">Requirements</div>
+    <div class="req-list">
+      <div class="req-item">
+        <div class="req-icon">🪟</div>
+        <div>
+          <div class="req-label">Operating System</div>
+          <div class="req-value">Windows 10 (Build 19041+) or Windows 11</div>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon">⚡</div>
+        <div>
+          <div class="req-label">PowerShell</div>
+          <div class="req-value">5.1 built-in — PowerShell 7 not required</div>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon">📦</div>
+        <div>
+          <div class="req-label">Package Manager</div>
+          <div class="req-value">winget (App Installer from Microsoft Store)</div>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon">🔑</div>
+        <div>
+          <div class="req-label">Privileges</div>
+          <div class="req-value">Administrator — for tweaks, services, repairs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="section">
+    <div class="section-title">Release History</div>
+    <div class="history-item">
+      <div class="history-version">
+        <span class="v-num">v0.6.1</span>
+        Build 4100<br/>Mar 2026
+      </div>
+      <div class="history-desc">Critical App Manager overhaul — fixed silent install failure (Start-Process in jobs), JSON job serialization, MS Store source routing, 3 bad package IDs, UTF-8 BOM, GetNewClosure crashes. Catalog expanded to 376 apps.</div>
+    </div>
+    <div class="history-item">
+      <div class="history-version">
+        <span class="v-num">v0.6.0</span>
+        Build 4034<br/>Mar 2026
+      </div>
+      <div class="history-desc">Initial public beta. 111-app catalog, unified Install/Uninstall tab with category sidebar and live search, EN/ES language toggle, 23 tweaks, 18 services, async SFC/DISM repair, Windows Update control, Dark/Light theme.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>
+    <a href="https://github.com/eperez98/WinTooler-For-W11-W10">github.com/eperez98/WinTooler-For-W11-W10</a>
+    &nbsp;·&nbsp; GPL-3.0 License &nbsp;·&nbsp;
+    Built with PowerShell + WPF — no Electron, no Python, no bloat
+  </p>
+</div>
+
+</body>
+</html>
