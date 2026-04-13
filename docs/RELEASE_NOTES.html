@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>WinTooler V0.8 beta — Build 5046 Release Notes</title>
+<style>
+  :root{--bg:#0f0f0f;--card:#1a1a1a;--card2:#212121;--border:#272727;--accent:#60AEFF;--green:#00cc6a;--purple:#a855f7;--orange:#f0a030;--red:#ff6060;--text1:#f0f0f0;--text2:#aaaaaa;--text3:#606060;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text1);font-family:"Segoe UI",system-ui,sans-serif;font-size:14px;line-height:1.65;padding:40px 20px 80px;}
+  .wrap{max-width:920px;margin:0 auto;}
+
+  /* Header */
+  .hdr{text-align:center;padding:56px 0 44px;border-bottom:1px solid var(--border);margin-bottom:48px;}
+  .hdr .tag{display:inline-block;background:#1a1060;color:var(--purple);border:1px solid #5a20b0;border-radius:20px;padding:5px 16px;font-size:12px;font-weight:700;margin-bottom:20px;letter-spacing:.04em;}
+  .hdr h1{font-size:36px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;}
+  .hdr .meta{font-size:13px;color:var(--text2);margin-bottom:26px;}
+  .hdr .meta strong{color:var(--accent);}
+  .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+  .pill{padding:4px 14px;border-radius:14px;font-size:11px;font-weight:600;}
+  .pb{background:#1a3a5c;color:var(--accent);border:1px solid #2a5080;}
+  .pg{background:#0d2d1a;color:var(--green);border:1px solid #1a5030;}
+  .pp{background:#1a1060;color:var(--purple);border:1px solid #5a20b0;}
+  .po{background:#2d1a0a;color:var(--orange);border:1px solid #5a3010;}
+
+  .st{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .section{margin-bottom:52px;}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:48px;}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;}
+  .stat .n{font-size:28px;font-weight:800;color:var(--accent);}
+  .stat .l{font-size:10px;color:var(--text2);margin-top:4px;}
+
+  /* Tweak categories table */
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+  th{background:var(--card2);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);border-bottom:1px solid var(--border);}
+  td{padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px;color:var(--text2);}
+  tr:last-child td{border-bottom:none;}
+  td:first-child{font-weight:600;color:var(--text1);}
+  td code{background:#252525;border-radius:3px;padding:1px 6px;font-family:Consolas,monospace;font-size:11px;color:var(--accent);}
+
+  /* Template cards */
+  .tpl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+  @media(max-width:600px){.tpl-grid{grid-template-columns:1fr;}}
+  .tpl{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;}
+  .tpl .name{font-size:13px;font-weight:700;margin-bottom:4px;}
+  .tpl .count{font-size:24px;font-weight:800;color:var(--accent);margin-bottom:6px;}
+  .tpl .desc{font-size:11px;color:var(--text2);}
+
+  /* Change log */
+  .log{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .logrow{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);}
+  .logrow:last-child{border-bottom:none;}
+  .ltag{flex-shrink:0;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;min-width:52px;text-align:center;letter-spacing:.04em;}
+  .ln{background:#0d2d1a;color:var(--green);border:1px solid #1a5030;}
+  .lf{background:#1a3a5c;color:var(--accent);border:1px solid #2a5080;}
+  .li{background:#2d1a0a;color:var(--orange);border:1px solid #5a3010;}
+  .logrow h4{font-size:13px;font-weight:600;margin-bottom:3px;}
+  .logrow p{font-size:12px;color:var(--text2);line-height:1.6;}
+
+  /* Power tools grid */
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media(max-width:580px){.feat-grid{grid-template-columns:1fr;}}
+  .feat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;}
+  .feat-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .feat-icon{width:36px;height:36px;border-radius:9px;background:#1a1060;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .feat h3{font-size:13px;font-weight:700;}
+  .feat .meta{font-size:10px;color:var(--text3);margin-top:1px;}
+  .feat ul{list-style:none;padding:0;}
+  .feat ul li{font-size:11px;color:var(--text2);padding:3px 0;border-bottom:1px solid var(--border);display:flex;gap:7px;}
+  .feat ul li:last-child{border-bottom:none;}
+  .feat ul li::before{content:"›";color:var(--accent);flex-shrink:0;}
+
+  .footer{text-align:center;margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);}
+  .footer a{color:var(--accent);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="tag">WinTooler</div>
+  <h1>V0.8 beta &mdash; Build 5046</h1>
+  <div class="meta">Released <strong>April 13, 2026</strong> &nbsp;&middot;&nbsp; ErickP (Eperez98) &nbsp;&middot;&nbsp; GPL-3.0</div>
+  <div class="pills">
+    <span class="pill pp">V0.8 beta</span>
+    <span class="pill pb">Build 5046</span>
+    <span class="pill pg">58 tweaks</span>
+    <span class="pill pg">15 tool pages</span>
+    <span class="pill po">April 13, 2026</span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="n">58</div><div class="l">System tweaks</div></div>
+  <div class="stat"><div class="n">+35</div><div class="l">New in 5046</div></div>
+  <div class="stat"><div class="n">376</div><div class="l">Apps in catalog</div></div>
+  <div class="stat"><div class="n">5</div><div class="l">Tweak categories</div></div>
+  <div class="stat"><div class="n">15</div><div class="l">Tool pages</div></div>
+  <div class="stat"><div class="n">~6.9k</div><div class="l">Lines of GUI</div></div>
+</div>
+
+<!-- Tweak catalog -->
+<div class="section">
+  <div class="st">Tweak Catalog — Build 5046 (58 total)</div>
+  <table>
+    <tr><th>Category</th><th>Count</th><th>Key additions in this build</th></tr>
+    <tr><td>Performance</td><td>10</td><td>Set Services to Manual, Disable Xbox Game DVR, Delete Temp Files, Run Disk Cleanup</td></tr>
+    <tr><td>Privacy</td><td>12</td><td>Disable WPBT, Disable PS7 Telemetry, Block Adobe Network, Disable Copilot, Disable Location (HKLM), Disable Notifications</td></tr>
+    <tr><td>UI &amp; Explorer</td><td>10</td><td>Remove Widgets, Enable End Task on Taskbar, Revert Start Menu, Create Restore Point, Disable Store Search</td></tr>
+    <tr><td>Bloatware</td><td>5</td><td>Disable Consumer Features</td></tr>
+    <tr><td>Advanced</td><td>21</td><td>Remove Edge, Set UTC, Remove OneDrive, Remove Home/Gallery, Display Performance, Remove ALL Store Apps, Disable IPv6, Block Razer, Brave Debloat, Edge Full Debloat, Classic Context Menu, Disable Storage Sense, Disable Teredo, Disable Xbox Full</td></tr>
+  </table>
+</div>
+
+<!-- Templates -->
+<div class="section">
+  <div class="st">Updated Preset Templates</div>
+  <div class="tpl-grid">
+    <div class="tpl">
+      <div class="name">Standard</div>
+      <div class="count">20</div>
+      <div class="desc">All previous 13 plus Consumer Features, Game DVR, PS7 Telemetry, WPBT, Widgets, End Task, Set Services, Store Search</div>
+    </div>
+    <div class="tpl">
+      <div class="name">Minimal</div>
+      <div class="count">8</div>
+      <div class="desc">Telemetry, Advertising ID, Activity, Consumer Features, WPBT, Set Services, Remove Start Ads, Disable Bing</div>
+    </div>
+    <div class="tpl">
+      <div class="name">Heavy</div>
+      <div class="count">36</div>
+      <div class="desc">All Standard + Edge Full, Copilot, Notifications, BG Apps, Explorer Discovery, Temp Files, + 10 more</div>
+    </div>
+  </div>
+</div>
+
+<!-- Power Tools (carried from 5045) -->
+<div class="section">
+  <div class="st">Power Tools — carried from Build 5045</div>
+  <div class="feat-grid">
+    <div class="feat">
+      <div class="feat-top"><div class="feat-icon">📄</div><div><h3>Hosts File Editor</h3><div class="meta">Ad-block &amp; privacy presets</div></div></div>
+      <ul>
+        <li>Visual line-by-line editor with inline delete</li>
+        <li>Ad-Block Preset: 10 ad networks blocked</li>
+        <li>Privacy Preset: 8 MS telemetry endpoints</li>
+        <li>Backup / Restore, lazy-loads on first visit</li>
+      </ul>
+    </div>
+    <div class="feat">
+      <div class="feat-top"><div class="feat-icon">🔧</div><div><h3>Driver Updater</h3><div class="meta">WMI scan + winget update</div></div></div>
+      <ul>
+        <li>Win32_PnPSignedDriver background scan</li>
+        <li>Flags drivers older than 3 years in red</li>
+        <li>Update Selected / Update All via winget</li>
+      </ul>
+    </div>
+    <div class="feat">
+      <div class="feat-top"><div class="feat-icon">📊</div><div><h3>Performance Benchmarks</h3><div class="meta">WinSAT — direct process launch</div></div></div>
+      <ul>
+        <li>System.Diagnostics.Process.Start() (not Start-Job)</li>
+        <li>CPU / Memory / Disk / Graphics / Gaming score cards</li>
+        <li>Load previous results from DataStore XML</li>
+      </ul>
+    </div>
+    <div class="feat">
+      <div class="feat-top"><div class="feat-icon">🗂</div><div><h3>Registry Cleaner</h3><div class="meta">3-pass scan + reg.exe backup</div></div></div>
+      <ul>
+        <li>Orphaned Uninstall keys, stale Run keys (HKCU + HKLM)</li>
+        <li>Timestamped .reg backup before any clean</li>
+        <li>Selective per-item removal</li>
+      </ul>
+    </div>
+    <div class="feat">
+      <div class="feat-top"><div class="feat-icon">🐧</div><div><h3>WSL Manager</h3><div class="meta">Full distro lifecycle</div></div></div>
+      <ul>
+        <li>UTF-16 null-byte fix + Start-Job (not UI-thread)</li>
+        <li>Install / Remove / Set Default / Launch</li>
+        <li>Enable WSL2 in one click</li>
+      </ul>
+    </div>
+    <div class="feat">
+      <div class="feat-top"><div class="feat-icon">✏️</div><div><h3>Custom Tweak Builder</h3><div class="meta">Form-based, JSON persistence</div></div></div>
+      <ul>
+        <li>DWORD / String / QWord / Binary support</li>
+        <li>Apply + Undo per tweak</li>
+        <li>Export / Import JSON for sharing</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Change log -->
+<div class="section">
+  <div class="st">Full Change Log</div>
+  <div class="log">
+    <div class="logrow"><span class="ltag ln">NEW</span><div><h4>WinUtil tweak integration — 23 &rarr; 58 tweaks</h4><p>35 new entries across Performance, Privacy, UI &amp; Explorer, Bloatware and a new Advanced category. All functions sourced from WinUtil InvokeScript and registry entries.</p></div></div>
+    <div class="logrow"><span class="ltag ln">NEW</span><div><h4>Advanced category (21 tweaks)</h4><p>Remove Edge, Set UTC, Remove OneDrive, Remove Home/Gallery from Explorer, Set Display for Performance, Remove ALL Store Apps, Disable Background Apps, Disable FSO, Disable IPv6, Prefer IPv4, Block Razer, Brave Debloat, Edge Full Debloat, Classic Context Menu, Disable Storage Sense, Disable Teredo, Disable Xbox Full.</p></div></div>
+    <div class="logrow"><span class="ltag li">IMP</span><div><h4>Templates overhauled — Standard 13→20, Minimal 4→8, Heavy 21→36</h4><p>All three presets updated with new key selections. Heavy now covers 36 tweaks including Copilot, Notifications, Background Apps, Edge Full, and Temp cleanup.</p></div></div>
+    <div class="logrow"><span class="ltag li">IMP</span><div><h4>tweaks.ps1 expanded to 707 lines</h4><p>35 new PowerShell functions. Set-ServicesToManual covers 80+ services. All functions follow Write-WTLog + background-job architecture.</p></div></div>
+    <div class="logrow"><span class="ltag ln">NEW</span><div><h4>Hosts File Editor (Build 5045)</h4><p>Visual editor with ad-block and privacy presets. Lazy-loads on first visit. Backup/Restore.</p></div></div>
+    <div class="logrow"><span class="ltag ln">NEW</span><div><h4>Driver Updater (Build 5045)</h4><p>Background WMI scan, outdated detection, winget update integration.</p></div></div>
+    <div class="logrow"><span class="ltag ln">NEW</span><div><h4>Performance Benchmarks (Build 5045)</h4><p>System.Diagnostics.Process.Start() for WinSAT — inherits admin token, writes to DataStore. Two-layer XML parse with regex fallback.</p></div></div>
+    <div class="logrow"><span class="ltag ln">NEW</span><div><h4>Registry Cleaner (Build 5045)</h4><p>Three-pass orphaned key scan. Per-item selective clean. reg.exe backup.</p></div></div>
+    <div class="logrow"><span class="ltag ln">NEW</span><div><h4>WSL Manager (Build 5045)</h4><p>Both wsl commands in Start-Job with UTF-8 encoding fix + null-byte strip. DispatcherTimer polling. No UI-thread blocking.</p></div></div>
+    <div class="logrow"><span class="ltag ln">NEW</span><div><h4>Custom Tweak Builder (Build 5045)</h4><p>Form-based registry tweak creator. Apply/Undo. Export/Import JSON. config\custom_tweaks.json persistence.</p></div></div>
+    <div class="logrow"><span class="ltag lf">FIX</span><div><h4>WSL Refresh crash (Build 5045)</h4><p>Four root causes: UTF-16 null bytes, synchronous network call on UI thread, RaiseEvent wrong constructor, inline-if in scriptblock. All resolved.</p></div></div>
+    <div class="logrow"><span class="ltag lf">FIX</span><div><h4>WinSAT "No data found" (Build 5045)</h4><p>Start-Job lost admin token. Replaced with System.Diagnostics.Process.Start() + 1.5s flush + DOM/regex parse fallback.</p></div></div>
+    <div class="logrow"><span class="ltag lf">FIX</span><div><h4>ISO app embedding Object[] crash (Build 5045)</h4><p>StringBuilder + File.WriteAllText + SelectSingleNode + XmlNamespaceManager.</p></div></div>
+    <div class="logrow"><span class="ltag lf">FIX</span><div><h4>ISO app picker category filter (Build 5045)</h4><p>All picker state moved to $script:-scoped variables. Category pills now filter correctly.</p></div></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>WinTooler V0.8 beta &mdash; Build 5046 &nbsp;&middot;&nbsp; Released April 13, 2026 &nbsp;&middot;&nbsp; GPL-3.0 &copy; ErickP (Eperez98) &nbsp;&middot;&nbsp; <a href="https://github.com/eperez98">github.com/eperez98</a></p>
+</div>
+
+</div>
+</body>
+</html>

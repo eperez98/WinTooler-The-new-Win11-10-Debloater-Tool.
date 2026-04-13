@@ -1,0 +1,166 @@
+================================================================================
+  WinTooler V0.8 beta -- Build 5046
+  Release Notes -- April 13, 2026
+  Author: ErickP (Eperez98)  |  License: GPL-3.0
+================================================================================
+
+OVERVIEW
+--------
+Build 5046 is a targeted expansion release built on top of the V0.8 Power
+Features drop (Build 5045). The headline change is the integration of
+Chris Titus Tech's WinUtil tweak catalogue, which grows the System Tweaks
+catalog from 23 to 58 entries and adds a new "Advanced" category covering
+network, display, Copilot, OneDrive, Edge, and more. Templates (Standard,
+Minimal, Heavy) have been fully updated to reflect the new catalog.
+All Build 5045 Power Tools ship unchanged.
+
+
+WHAT'S NEW IN BUILD 5046
+-------------------------
+
+[NEW] WinUtil Tweaks Integration — 23 → 58 tweaks (+35)
+
+  Category breakdown after integration:
+    Performance  (10):  Set Services to Manual, Disable Xbox Game DVR,
+                        Delete Temp Files, Run Disk Cleanup, + 6 more
+    Privacy      (12):  Disable WPBT, Disable PS7 Telemetry, Block Adobe
+                        Network, Disable Copilot, Disable Location (HKLM),
+                        Disable Notifications, + 6 more
+    UI & Explorer (10): Remove Widgets, Enable End Task on Taskbar,
+                        Revert Start Menu Layout, Create Restore Point,
+                        Disable Store Search, + 5 more
+    Bloatware     (5):  Disable Consumer Features + 4 existing entries
+    Advanced     (21):  Remove Microsoft Edge, Set Time to UTC, Remove
+                        OneDrive, Remove Home/Gallery from Explorer,
+                        Set Display for Performance, Remove ALL Store Apps,
+                        Disable Background Apps, Disable Fullscreen
+                        Optimizations, Disable IPv6, Prefer IPv4, Block
+                        Razer Installs, Brave Debloat, Edge Full Debloat,
+                        Classic Context Menu, Disable Storage Sense,
+                        Disable Teredo, Disable Xbox & Gaming Components,
+                        + 4 more
+
+[NEW] Updated Template Presets
+
+  Standard (20 tweaks):
+    All previous 13 + Disable Consumer Features, Disable Xbox Game DVR,
+    Disable PS7 Telemetry, Disable WPBT, Remove Widgets, Enable End Task,
+    Set Services to Manual, Disable Store Search
+
+  Minimal (8 tweaks):
+    Disable Telemetry, Disable Advertising ID, Disable Activity History,
+    Disable Consumer Features, Disable WPBT, Set Services to Manual,
+    Remove Start Menu Ads, Disable Bing Search in Start
+
+  Heavy (36 tweaks):
+    All Standard + Edge Full Debloat, Disable Copilot, Disable
+    Notifications, Disable Background Apps, Disable Explorer Auto-
+    Discovery, Delete Temp Files, + Location HKLM, Block Telemetry Hosts,
+    Remove MS Bloat, Remove Xbox, Disable OneDrive, Disable Store Search
+
+[IMP] tweaks.ps1 expanded
+  707 lines, 35 new PowerShell functions added. All functions sourced from
+  WinUtil InvokeScript and registry entries, adapted for WinTooler's
+  Write-WTLog + background-job architecture.
+
+[IMP] tweaks.json schema unchanged
+  All 35 new entries follow the existing schema:
+  Category / Name / Key / Description / Risk / Reversible / Default / Script
+  No changes to gui.ps1 tweak-build loop required.
+
+
+CARRIED FROM BUILD 5045 — POWER TOOLS
+--------------------------------------
+
+[NEW] Hosts File Editor
+  Visual editor for C:\Windows\System32\drivers\etc\hosts.
+  Ad-Block Preset (10 networks) + Privacy Preset (8 MS telemetry domains).
+  Backup/Restore, Add Entry form, inline delete. Lazy-loads on first visit.
+
+[NEW] Driver Updater
+  Win32_PnPSignedDriver WMI scan in Start-Job. Flags drivers > 3 years old.
+  Update Selected (winget) + Update All (elevated window).
+
+[NEW] Performance Benchmarks
+  System.Diagnostics.Process.Start() launches winsat.exe directly — no
+  Start-Job — so WinSAT inherits the full admin token and writes to
+  DataStore. DispatcherTimer polls HasExited. Two-layer XML parse: XmlDocument
+  DOM first, regex fallback.
+
+[NEW] Registry Cleaner
+  Three passes: HKLM Uninstall missing UninstallString, HKCU Run pointing
+  to absent executables, HKLM Run pointing to absent executables.
+  reg.exe export backup before clean. Per-item selective removal.
+
+[NEW] WSL Manager
+  Both wsl --list --verbose and wsl --list --online run inside Start-Job
+  with [Console]::OutputEncoding = UTF8 and null-byte strip to handle
+  WSL's UTF-16 output on Windows 11. DispatcherTimer polls completion.
+  No synchronous UI-thread blocking.
+
+[NEW] Custom Tweak Builder
+  Form: Name / Description / Risk / RegPath / ValName / ValType / Apply /
+  Undo. Saves to config\custom_tweaks.json. Export/Import JSON.
+  Lazy-loads saved tweaks on first visit.
+
+
+BUG FIXES (Build 5045 / 5046)
+------------------------------
+
+[FIX] WSL Refresh crash
+  Root causes: (1) wsl.exe UTF-16 null bytes crashing string operations,
+  (2) wsl --list --online synchronous network call blocking the WPF STA
+  thread, (3) RaiseEvent() wrong RoutedEventArgs constructor, (4) inline-if
+  in stored scriptblock. All four fixed.
+
+[FIX] WinSAT "No WinSAT data found" after benchmark
+  Start-Job spawned a new PowerShell.exe that lost the admin token context
+  needed to write to DataStore. Replaced with
+  System.Diagnostics.Process.Start() (non-blocking direct child process) +
+  1.5s flush delay + XmlNamespaceManager DOM parse + regex fallback.
+
+[FIX] Chocolatey auto-install in App Manager
+  When choco.exe absent and app has Chocolatey ID, the install job
+  now downloads community.chocolatey.org/install.ps1, runs it, updates
+  PATH, and retries. No manual step needed.
+
+[FIX] ISO app embedding Object[] to UInt32 crash
+  StringBuilder + File.WriteAllText replaces array += / Out-File.
+  SelectSingleNode + XmlNamespaceManager replaces Where-Object on
+  XmlDocument.settings (which returned Object[]).
+
+[FIX] App picker category filter not working
+  WPF mouse event handlers run in script scope. All picker state moved to
+  $script:ISOPopCurCat, ISOPopRows, ISOPopLocalSel, etc.
+
+
+VERSION
+-------
+  AppVersion : V0.8 beta
+  AppBuild   : 5046
+  Released   : April 13, 2026
+  Engine     : WinTooler Native Engine v0.8
+  GUI size   : ~6900 lines (gui.ps1)
+  Tweaks     : 58 (5 categories)
+  Apps       : 376 (9 categories)
+  Services   : 18
+
+
+KNOWN STATUS
+------------
+  All five v0.7.1 limitations remain resolved.
+  No new known issues introduced in Build 5046.
+
+
+ROADMAP
+-------
+v1.0 Release Candidate
+  .msi / NSIS installer with Start Menu shortcut and clean uninstall
+  In-app auto-update notifications from GitHub
+  Code-signed script (eliminates SmartScreen on first run)
+  Full OS test coverage: Win10 21H2, Win11 22H2 / 23H2 / 24H2
+  Intel, AMD and ARM64
+
+================================================================================
+  GPL-3.0 (C) ErickP (Eperez98)  |  github.com/eperez98
+================================================================================

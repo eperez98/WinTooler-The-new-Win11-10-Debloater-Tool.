@@ -1,0 +1,172 @@
+{
+  "AppManager": {
+    "InstallApps": {
+      "Type": "Feature",
+      "Script": "Install-WinToolerApps",
+      "Description": "Install selected applications via winget or Chocolatey",
+      "RequiresAdmin": true,
+      "RequiresWinget": true
+    },
+    "UninstallApps": {
+      "Type": "Feature",
+      "Script": "Uninstall-WinToolerApps",
+      "Description": "Uninstall selected applications via winget",
+      "RequiresAdmin": true,
+      "RequiresWinget": true
+    },
+    "UpdateAllApps": {
+      "Type": "Feature",
+      "Script": "Update-AllWingetApps",
+      "Description": "Run winget upgrade --all in an external window",
+      "RequiresAdmin": false,
+      "RequiresWinget": true
+    }
+  },
+  "SystemTweaks": {
+    "ApplyTweaks": {
+      "Type": "Feature",
+      "Script": "Invoke-WinToolerTweaks",
+      "Description": "Apply registry and system tweaks",
+      "RequiresAdmin": true,
+      "ConfigFile": "tweaks.json"
+    },
+    "UndoTweaks": {
+      "Type": "Feature",
+      "Script": "Undo-WinToolerTweaks",
+      "Description": "Revert previously applied tweaks",
+      "RequiresAdmin": true,
+      "ConfigFile": "tweaks.json"
+    }
+  },
+  "Services": {
+    "ManageServices": {
+      "Type": "Feature",
+      "Script": "Set-WinToolerServices",
+      "Description": "Enable, disable or set services to Manual startup",
+      "RequiresAdmin": true,
+      "ConfigFile": "services.json"
+    }
+  },
+  "Repair": {
+    "RunSFC": {
+      "Type": "Feature",
+      "Script": "Invoke-SFCScan",
+      "Description": "Run System File Checker (sfc /scannow)",
+      "RequiresAdmin": true
+    },
+    "RunDISM": {
+      "Type": "Feature",
+      "Script": "Invoke-DISMRepair",
+      "Description": "Run DISM /RestoreHealth to repair Windows image",
+      "RequiresAdmin": true
+    },
+    "FlushDNS": {
+      "Type": "Feature",
+      "Script": "Clear-WinToolerDNS",
+      "Description": "Flush DNS resolver cache",
+      "RequiresAdmin": true
+    },
+    "ClearTemp": {
+      "Type": "Feature",
+      "Script": "Clear-TempFiles",
+      "Description": "Delete temporary files from %TEMP% and system temp",
+      "RequiresAdmin": false
+    },
+    "CreateRestorePoint": {
+      "Type": "Feature",
+      "Script": "New-WinToolerRestorePoint",
+      "Description": "Create a Windows System Restore Point",
+      "RequiresAdmin": true
+    },
+    "ResetNetwork": {
+      "Type": "Feature",
+      "Script": "Reset-WinToolerNetwork",
+      "Description": "Reset TCP/IP stack and Winsock catalog",
+      "RequiresAdmin": true
+    }
+  },
+  "StartupManager": {
+    "LoadStartupItems": {
+      "Type": "Feature",
+      "Script": "Get-StartupItems",
+      "Description": "Load startup programs from registry and startup folders",
+      "RequiresAdmin": false
+    },
+    "ToggleStartupItem": {
+      "Type": "Feature",
+      "Script": "Set-StartupItem",
+      "Description": "Enable or disable a startup item",
+      "RequiresAdmin": true
+    }
+  },
+  "DNSChanger": {
+    "SetDNS": {
+      "Type": "Feature",
+      "Script": "Set-WinToolerDNS",
+      "Description": "Change DNS servers on all active network adapters",
+      "RequiresAdmin": true
+    },
+    "ResetDNS": {
+      "Type": "Feature",
+      "Script": "Reset-WinToolerDNS",
+      "Description": "Restore DHCP-assigned DNS servers",
+      "RequiresAdmin": true
+    }
+  },
+  "ProfileBackup": {
+    "ExportProfile": {
+      "Type": "Feature",
+      "Script": "Export-WinToolerProfile",
+      "Description": "Export current tweak selections to a JSON file",
+      "RequiresAdmin": false
+    },
+    "ImportProfile": {
+      "Type": "Feature",
+      "Script": "Import-WinToolerProfile",
+      "Description": "Import and apply a previously saved JSON profile",
+      "RequiresAdmin": true
+    }
+  },
+  "InstallMedia": {
+    "CreateWindows11ISO": {
+      "Type": "Feature",
+      "Script": "Invoke-Win11ISOCreator",
+      "Description": "Download and build a Windows 11 ISO with optional customisations",
+      "RequiresAdmin": true,
+      "RequiresInternet": true,
+      "RequiredDiskGB": 10,
+      "Parameters": {
+        "Version": {
+          "Type": "ComboBox",
+          "Options": ["Windows 11 23H2", "Windows 11 22H2", "Windows 11 24H2"],
+          "Default": "Windows 11 23H2"
+        },
+        "Language": {
+          "Type": "ComboBox",
+          "Options": ["English (United States)", "Spanish (Spain)", "French (France)", "German (Germany)", "Portuguese (Brazil)"],
+          "Default": "English (United States)"
+        },
+        "Architecture": {
+          "Type": "ComboBox",
+          "Options": ["x64"],
+          "Default": "x64"
+        },
+        "BypassTPM": {
+          "Type": "Toggle",
+          "Default": false,
+          "Label": "Remove TPM / Secure Boot requirement"
+        },
+        "BypassRAM": {
+          "Type": "Toggle",
+          "Default": false,
+          "Label": "Remove 8 GB RAM requirement"
+        },
+        "EnableUnattended": {
+          "Type": "Toggle",
+          "Default": false,
+          "Label": "Enable unattended install (skip OOBE)"
+        }
+      }
+    }
+  }
+}
